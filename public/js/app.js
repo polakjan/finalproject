@@ -5804,40 +5804,53 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Register = function Register() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      validated = _useState2[0],
+      setValidated = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
     email: "",
     username: "",
     password: "",
     password_confirmation: ""
   }),
-      _useState2 = _slicedToArray(_useState, 2),
-      _useState2$ = _useState2[0],
-      email = _useState2$.email,
-      username = _useState2$.username,
-      password = _useState2$.password,
-      password_confirmation = _useState2$.password_confirmation,
-      setValues = _useState2[1];
-
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
       _useState4 = _slicedToArray(_useState3, 2),
-      errors = _useState4[0],
-      setErrors = _useState4[1];
+      _useState4$ = _useState4[0],
+      email = _useState4$.email,
+      username = _useState4$.username,
+      password = _useState4$.password,
+      password_confirmation = _useState4$.password_confirmation,
+      setValues = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
+      _useState6 = _slicedToArray(_useState5, 2),
+      errors = _useState6[0],
+      setErrors = _useState6[1];
 
   var handleSubmit = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(event) {
-      var request_data, response, response_data;
+      var form, request_data, response, response_data;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               event.preventDefault();
+              form = event.currentTarget;
+
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+
+              setValidated(true);
               request_data = {
                 email: email,
                 username: username,
                 password: password,
                 password_confirmation: password_confirmation
               };
-              _context.next = 4;
+              _context.next = 7;
               return fetch("/register", {
                 method: "POST",
                 body: JSON.stringify(request_data),
@@ -5848,21 +5861,23 @@ var Register = function Register() {
                 }
               });
 
-            case 4:
+            case 7:
               response = _context.sent;
-              _context.next = 7;
+              _context.next = 10;
               return response.json();
 
-            case 7:
+            case 10:
               response_data = _context.sent;
 
-              if (response.status == 200 || response.status == 201) {
-                location.href = "/login";
+              if (Math.floor(response.status / 100) === 2) {
+                location.href = "/";
+              } else if (Math.floor(response.status / 100) === 3) {
+                location.href = "/register";
               } else {
                 setErrors(response_data.errors);
               }
 
-            case 9:
+            case 12:
             case "end":
               return _context.stop();
           }
@@ -5889,6 +5904,8 @@ var Register = function Register() {
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__.default, {
+      noValidate: true,
+      validated: validated,
       action: "/register",
       method: "post",
       onSubmit: handleSubmit,
@@ -5908,7 +5925,11 @@ var Register = function Register() {
             type: "text",
             value: username,
             name: "username",
-            onChange: handleChange
+            onChange: handleChange,
+            required: true
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__.default.Control.Feedback, {
+            type: "invalid",
+            children: "Please choose a username."
           })]
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__.default.Group, {
@@ -5920,7 +5941,11 @@ var Register = function Register() {
           ,
           name: "email",
           value: email,
-          onChange: handleChange
+          onChange: handleChange,
+          required: true
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__.default.Control.Feedback, {
+          type: "invalid",
+          children: "Please provide an email."
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__.default.Label, {
@@ -5931,7 +5956,8 @@ var Register = function Register() {
           "aria-describedby": "passwordHelpBlock",
           value: password,
           name: "password",
-          onChange: handleChange
+          onChange: handleChange // pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\]).{8,20}$"
+
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__.default.Text, {
           /* id="passwordHelpBlock" */
           muted: true,

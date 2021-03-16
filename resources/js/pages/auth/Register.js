@@ -8,6 +8,8 @@ import {
 } from "react-bootstrap";
 
 const Register = () => {
+    const [validated, setValidated] = useState(false);
+
     const [
         { email, username, password, password_confirmation },
         setValues,
@@ -21,6 +23,14 @@ const Register = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        setValidated(true);
 
         let request_data = { email, username, password, password_confirmation };
         const response = await fetch("/register", {
@@ -36,8 +46,10 @@ const Register = () => {
         });
         const response_data = await response.json();
 
-        if (response.status == 200 || response.status == 201) {
-            location.href = "/login";
+        if (Math.floor(response.status / 100) === 2) {
+            location.href = "/";
+        } else if (Math.floor(response.status / 100) === 3) {
+            location.href = "/register";
         } else {
             setErrors(response_data.errors);
         }
@@ -61,7 +73,13 @@ const Register = () => {
     };
     return (
         <Container>
-            <Form action="/register" method="post" onSubmit={handleSubmit}>
+            <Form
+                noValidate
+                validated={validated}
+                action="/register"
+                method="post"
+                onSubmit={handleSubmit}
+            >
                 <Form.Group controlId="username">
                     <Form.Label>Username</Form.Label>
                     <InputGroup className="mb-2">
@@ -75,7 +93,11 @@ const Register = () => {
                             value={username}
                             name="username"
                             onChange={handleChange}
+                            required
                         />
+                        <Form.Control.Feedback type="invalid">
+                            Please choose a username.
+                        </Form.Control.Feedback>
                     </InputGroup>
                 </Form.Group>
                 <Form.Group controlId="email">
@@ -86,7 +108,11 @@ const Register = () => {
                         name="email"
                         value={email}
                         onChange={handleChange}
+                        required
                     />
+                    <Form.Control.Feedback type="invalid">
+                        Please provide an email.
+                    </Form.Control.Feedback>
                 </Form.Group>
                 <>
                     <Form.Label /* htmlFor="inputPassword5" */>
@@ -99,6 +125,7 @@ const Register = () => {
                         value={password}
                         name="password"
                         onChange={handleChange}
+                        // pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\]).{8,20}$"
                     />
                     <Form.Text /* id="passwordHelpBlock" */ muted>
                         Your password must be 8-20 characters long, contain
