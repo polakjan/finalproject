@@ -5830,18 +5830,19 @@ var Register = function Register() {
 
   var handleSubmit = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(event) {
-      var form, request_data, response, response_data;
+      var request_data, response, response_data;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               event.preventDefault();
-              form = event.currentTarget;
-
-              if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-              }
+              /* FROM BOOTSTRAP DOCS */
+              // const form = event.currentTarget;
+              // if (form.checkValidity() === false) {
+              //     event.preventDefault();
+              //     event.stopPropagation();
+              //     console.log(1);
+              // }
 
               setValidated(true);
               request_data = {
@@ -5850,7 +5851,7 @@ var Register = function Register() {
                 password: password,
                 password_confirmation: password_confirmation
               };
-              _context.next = 7;
+              _context.next = 5;
               return fetch("/register", {
                 method: "POST",
                 body: JSON.stringify(request_data),
@@ -5861,23 +5862,23 @@ var Register = function Register() {
                 }
               });
 
-            case 7:
+            case 5:
               response = _context.sent;
-              _context.next = 10;
+              _context.next = 8;
               return response.json();
 
-            case 10:
+            case 8:
               response_data = _context.sent;
 
-              if (Math.floor(response.status / 100) === 2) {
+              if (Math.floor(response.status / 100) == 2) {
                 location.href = "/";
-              } else if (Math.floor(response.status / 100) === 3) {
-                location.href = "/register";
+              } else if (Math.floor(response.status / 100) == 3) {
+                location.href = "/login";
               } else {
                 setErrors(response_data.errors);
               }
 
-            case 12:
+            case 10:
             case "end":
               return _context.stop();
           }

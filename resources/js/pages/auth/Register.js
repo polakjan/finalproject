@@ -24,15 +24,18 @@ const Register = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
+        /* FROM BOOTSTRAP DOCS */
+        // const form = event.currentTarget;
+        // if (form.checkValidity() === false) {
+        //     event.preventDefault();
+        //     event.stopPropagation();
+        //     console.log(1);
+        // }
 
         setValidated(true);
 
         let request_data = { email, username, password, password_confirmation };
+
         const response = await fetch("/register", {
             method: "POST",
             body: JSON.stringify(request_data),
@@ -46,10 +49,10 @@ const Register = () => {
         });
         const response_data = await response.json();
 
-        if (Math.floor(response.status / 100) === 2) {
+        if (Math.floor(response.status / 100) == 2) {
             location.href = "/";
-        } else if (Math.floor(response.status / 100) === 3) {
-            location.href = "/register";
+        } else if (Math.floor(response.status / 100) == 3) {
+            location.href = "/login";
         } else {
             setErrors(response_data.errors);
         }
