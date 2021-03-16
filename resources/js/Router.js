@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import TopNav from "./components/TopNav";
 import Login from "./pages/auth/Login";
+import Logout from "./pages/auth/Logout";
 import Register from "./pages/auth/Register";
 import EntityDetails from "./pages/entities/EntityDetails";
 import Home from "./pages/home/Home";
@@ -16,6 +17,7 @@ if (document.getElementById("app")) {
                 <Route exact path="/" component={Home} />
                 <Route path="/map" component={MapPage} />
                 <Route path="/login" component={Login} />
+                <Route path="/logout" component={Logout} />
                 <Route path="/register" component={Register} />
                 <Route path="/details" component={EntityDetails} />
             </Switch>
