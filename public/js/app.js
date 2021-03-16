@@ -5500,6 +5500,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var TopNav = function TopNav() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default, {
+    collapseOnSelect: true,
     bg: "light",
     expand: "lg",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__.default.Brand, {

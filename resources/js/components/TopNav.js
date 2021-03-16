@@ -11,7 +11,7 @@ import { LinkContainer } from "react-router-bootstrap";
 
 const TopNav = () => {
     return (
-        <Navbar bg="light" expand="lg">
+        <Navbar collapseOnSelect bg="light" expand="lg">
             <Navbar.Brand href="/">HikeCzech</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
