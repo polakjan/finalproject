@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import React from "react";
 
 function Logout() {
-    const handleSubmit = async (event) => {
+    const handleLogout = async (event) => {
         event.preventDefault();
 
         const response = await fetch("/logout", {
@@ -16,21 +15,20 @@ function Logout() {
                     .getAttribute("content"),
             },
         });
-        const response_data = await response.json();
+        // const response_data = await response.json();
 
-        if (response.status == 200) {
+        if (response.status == 204) {
             location.href = "/";
         } else {
-            setErrors(response_data.errors);
+            // setErrors(response_data.errors);
+            console.log("error");
         }
     };
 
     return (
-        <Container>
-            <Form action="/logout" method="post" onSubmit={handleSubmit}>
-                <Button>Log out</Button>
-            </Form>
-        </Container>
+        <>
+            <span onClick={handleLogout}>Logout</span>
+        </>
     );
 }
 

@@ -8,6 +8,7 @@ import {
     FormControl,
 } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import Logout from "../pages/auth/Logout";
 
 const TopNav = () => {
     return (
@@ -25,9 +26,12 @@ const TopNav = () => {
                     <LinkContainer to={"/register"}>
                         <Nav.Link>Register</Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to={"/logout"}>
-                        <Nav.Link>Logout</Nav.Link>
+                    <LinkContainer to={""}>
+                        <Nav.Link>
+                            <Logout />
+                        </Nav.Link>
                     </LinkContainer>
+
                     <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                         <NavDropdown.Item href="#action/3.2">
                             Favourites
