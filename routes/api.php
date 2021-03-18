@@ -15,6 +15,15 @@ use App\Http\Controllers\UserController;
 |
 */
 
+//       /api/token
+// Route::post('/token', 'Api\UserController@token');
+
+// //                                              only if authenticated through Sanctum
+// Route::get('/user', 'UserController@user')->middleware('auth:sanctum');
+
+// //                                                   only if authenticated through Sanctum
+// Route::post('/logout', 'UserController@logout')->middleware('auth:sanctum');
+
 Route::get('/user',"UserController@user");
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
