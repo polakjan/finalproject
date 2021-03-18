@@ -3515,6 +3515,18 @@ function useWillUnmount(fn) {
 
 /***/ }),
 
+/***/ "./node_modules/@tmcw/togeojson/dist/togeojson.umd.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@tmcw/togeojson/dist/togeojson.umd.js ***!
+  \************************************************************/
+/***/ (function(__unused_webpack_module, exports) {
+
+!function(e,t){ true?t(exports):0}(this,(function(e){"use strict";function t(e){return e&&e.normalize&&e.normalize(),e&&e.textContent||""}function n(e,t){const n=e.getElementsByTagName(t);return n.length?n[0]:null}function o(e){const o={};if(e){const s=n(e,"line");if(s){const e=t(n(s,"color")),r=parseFloat(t(n(s,"opacity"))),l=parseFloat(t(n(s,"width")));e&&(o.stroke=e),isNaN(r)||(o["stroke-opacity"]=r),isNaN(l)||(o["stroke-width"]=96*l/25.4)}}return o}function s(e,o){const s={};let r,l;for(l=0;l<o.length;l++)r=n(e,o[l]),r&&(s[o[l]]=t(r));return s}function r(e){const n=s(e,["name","cmt","desc","type","time","keywords"]),o=e.getElementsByTagNameNS("http://www.garmin.com/xmlschemas/GpxExtensions/v3","*");for(let s=0;s<o.length;s++){const r=o[s];r.parentNode.parentNode===e&&(n[r.tagName.replace(":","_")]=t(r))}const r=e.getElementsByTagName("link");r.length&&(n.links=[]);for(let e=0;e<r.length;e++)n.links.push(Object.assign({href:r[e].getAttribute("href")},s(r[e],["text","type"])));return n}function l(e){const o=[parseFloat(e.getAttribute("lon")),parseFloat(e.getAttribute("lat"))],s=n(e,"ele"),r=n(e,"gpxtpx:hr")||n(e,"hr"),l=n(e,"time");let i;s&&(i=parseFloat(t(s)),isNaN(i)||o.push(i));const a={coordinates:o,time:l?t(l):null,extendedValues:[]};r&&a.extendedValues.push(["heartRate",parseFloat(t(r))]);const c=n(e,"extensions");if(null!==c)for(const e of["speed","course","hAcc","vAcc"]){const o=parseFloat(t(n(c,e)));isNaN(o)||a.extendedValues.push([e,o])}return a}function i(e){const t=a(e,"rtept");if(t)return{type:"Feature",properties:Object.assign(r(e),o(n(e,"extensions")),{_gpxType:"rte"}),geometry:{type:"LineString",coordinates:t.line}}}function a(e,t){const n=e.getElementsByTagName(t);if(n.length<2)return;const o=[],s=[],r={};for(let e=0;e<n.length;e++){const t=l(n[e]);o.push(t.coordinates),t.time&&s.push(t.time);for(let o=0;o<t.extendedValues.length;o++){const[s,l]=t.extendedValues[o],i=s+"s";r[i]||(r[i]=Array(n.length).fill(null)),r[i][e]=l}}return{line:o,times:s,extendedValues:r}}function c(e){const t=e.getElementsByTagName("trkseg"),s=[],l=[],i=[];for(let e=0;e<t.length;e++){const n=a(t[e],"trkpt");n&&(i.push(n),n.times&&n.times.length&&l.push(n.times))}if(0===i.length)return;const c=i.length>1,g=Object.assign(r(e),o(n(e,"extensions")),{_gpxType:"trk"},l.length?{coordTimes:c?l:l[0]}:{});for(let e=0;e<i.length;e++){const t=i[e];s.push(t.line);for(const[n,o]of Object.entries(t.extendedValues))c?(g[n]||(g[n]=i.map(e=>new Array(e.line.length).fill(null))),g[n][e]=o):g[n]=o}return{type:"Feature",properties:g,geometry:c?{type:"MultiLineString",coordinates:s}:{type:"LineString",coordinates:s[0]}}}function*g(e){const t=e.getElementsByTagName("trk"),n=e.getElementsByTagName("rte"),o=e.getElementsByTagName("wpt");for(let e=0;e<t.length;e++){const n=c(t[e]);n&&(yield n)}for(let e=0;e<n.length;e++){const t=i(n[e]);t&&(yield t)}for(let e=0;e<o.length;e++)yield(a=o[e],{type:"Feature",properties:Object.assign(r(a),s(a,["sym"])),geometry:{type:"Point",coordinates:l(a).coordinates}});var a}const u="http://www.garmin.com/xmlschemas/ActivityExtension/v2",m=[["heartRate","heartRates"],["Cadence","cadences"],["Speed","speeds"],["Watts","watts"]],p=[["TotalTimeSeconds","totalTimeSeconds"],["DistanceMeters","distanceMeters"],["MaximumSpeed","maxSpeed"],["AverageHeartRateBpm","avgHeartRate"],["MaximumHeartRateBpm","maxHeartRate"],["AvgSpeed","avgSpeed"],["AvgWatts","avgWatts"],["MaxWatts","maxWatts"]];function f(e,o){const s=[];for(const[r,l]of o){let o=n(e,r);if(!o){const t=e.getElementsByTagNameNS(u,r);t.length&&(o=t[0])}const i=parseFloat(t(o));isNaN(i)||s.push([l,i])}return s}function h(e){const o=t(n(e,"LongitudeDegrees")),s=t(n(e,"LatitudeDegrees"));if(!o.length||!s.length)return null;const r=[parseFloat(o),parseFloat(s)],l=n(e,"AltitudeMeters"),i=n(e,"HeartRateBpm"),a=n(e,"Time");let c;return l&&(c=parseFloat(t(l)),isNaN(c)||r.push(c)),{coordinates:r,time:a?t(a):null,heartRate:i?parseFloat(t(i)):null,extensions:f(e,m)}}function d(e,t){const n=e.getElementsByTagName(t),o=[],s=[],r=[];if(n.length<2)return null;const l={extendedProperties:{}};for(let e=0;e<n.length;e++){const t=h(n[e]);if(null!==t){o.push(t.coordinates),t.time&&s.push(t.time),t.heartRate&&r.push(t.heartRate);for(const[o,s]of t.extensions)l.extendedProperties[o]||(l.extendedProperties[o]=Array(n.length).fill(null)),l.extendedProperties[o][e]=s}}return Object.assign(l,{line:o,times:s,heartRates:r})}function y(e){const t=e.getElementsByTagName("Track"),n=[],o=[],s=[],r=[];let l;const i=function(e){const t={};for(const[n,o]of e)t[n]=o;return t}(f(e,p));for(let e=0;e<t.length;e++)l=d(t[e],"Trackpoint"),l&&(n.push(l.line),l.times.length&&o.push(l.times),l.heartRates.length&&s.push(l.heartRates),r.push(l.extendedProperties));for(let e=0;e<r.length;e++){const o=r[e];for(const s in o)1===t.length?i[s]=l.extendedProperties[s]:(i[s]||(i[s]=n.map(e=>Array(e.length).fill(null))),i[s][e]=o[s])}if(0!==n.length)return o.length&&(i.coordTimes=1===n.length?o[0]:o),s.length&&(i.heartRates=1===n.length?s[0]:s),{type:"Feature",properties:i,geometry:{type:1===n.length?"LineString":"MultiLineString",coordinates:1===n.length?n[0]:n}}}function*N(e){const t=e.getElementsByTagName("Lap");for(let e=0;e<t.length;e++){const n=y(t[e]);n&&(yield n)}}const x=/\s*/g,T=/^\s*|\s*$/g,b=/\s+/;function S(e){if(!e||!e.length)return 0;let t=0;for(let n=0;n<e.length;n++)t=(t<<5)-t+e.charCodeAt(n)|0;return t}function k(e){return e.replace(x,"").split(",").map(parseFloat)}function A(e){return e.replace(T,"").split(b).map(k)}function B(e){if(void 0!==e.xml)return e.xml;if(e.tagName){let t=e.tagName;for(let n=0;n<e.attributes.length;n++)t+=e.attributes[n].name+e.attributes[n].value;for(let n=0;n<e.childNodes.length;n++)t+=B(e.childNodes[n]);return t}return"#text"===e.nodeName?(e.nodeValue||e.value||"").trim():"#cdata-section"===e.nodeName?e.nodeValue:""}const E=["Polygon","LineString","Point","Track","gx:Track"];function F(e,o,s){let r=t(n(o,"color"))||"";const l="stroke"==s||"fill"===s?s:s+"-color";"#"===r.substr(0,1)&&(r=r.substr(1)),6===r.length||3===r.length?e[l]=r:8===r.length&&(e[s+"-opacity"]=parseInt(r.substr(0,2),16)/255,e[l]="#"+r.substr(6,2)+r.substr(4,2)+r.substr(2,2))}function v(e,o,s,r){const l=parseFloat(t(n(o,s)));isNaN(l)||(e[r]=l)}function P(e){let n=e.getElementsByTagName("coord");const o=[],s=[];0===n.length&&(n=e.getElementsByTagName("gx:coord"));for(let e=0;e<n.length;e++)o.push(t(n[e]).split(" ").map(parseFloat));const r=e.getElementsByTagName("when");for(let e=0;e<r.length;e++)s.push(t(r[e]));return{coords:o,times:s}}function L(e,o,s,r){const l=function e(o){let s,r,l,i,a;const c=[],g=[];if(n(o,"MultiGeometry"))return e(n(o,"MultiGeometry"));if(n(o,"MultiTrack"))return e(n(o,"MultiTrack"));if(n(o,"gx:MultiTrack"))return e(n(o,"gx:MultiTrack"));for(l=0;l<E.length;l++)if(r=o.getElementsByTagName(E[l]),r)for(i=0;i<r.length;i++)if(s=r[i],"Point"===E[l])c.push({type:"Point",coordinates:k(t(n(s,"coordinates")))});else if("LineString"===E[l])c.push({type:"LineString",coordinates:A(t(n(s,"coordinates")))});else if("Polygon"===E[l]){const e=s.getElementsByTagName("LinearRing"),o=[];for(a=0;a<e.length;a++)o.push(A(t(n(e[a],"coordinates"))));c.push({type:"Polygon",coordinates:o})}else if("Track"===E[l]||"gx:Track"===E[l]){const e=P(s);c.push({type:"LineString",coordinates:e.coords}),e.times.length&&g.push(e.times)}return{geoms:c,coordTimes:g}}(e);let i;const a={},c=t(n(e,"name")),g=t(n(e,"address"));let u=t(n(e,"styleUrl"));const m=t(n(e,"description")),p=n(e,"TimeSpan"),f=n(e,"TimeStamp"),h=n(e,"ExtendedData");let d=n(e,"IconStyle"),y=n(e,"LabelStyle"),N=n(e,"LineStyle"),x=n(e,"PolyStyle");const T=n(e,"visibility");if(c&&(a.name=c),g&&(a.address=g),u){"#"!==u[0]&&(u="#"+u),a.styleUrl=u,o[u]&&(a.styleHash=o[u]),s[u]&&(a.styleMapHash=s[u],a.styleHash=o[s[u].normal]);const e=r[a.styleHash];e&&(d||(d=n(e,"IconStyle")),y||(y=n(e,"LabelStyle")),N||(N=n(e,"LineStyle")),x||(x=n(e,"PolyStyle")))}if(m&&(a.description=m),p){const e=t(n(p,"begin")),o=t(n(p,"end"));a.timespan={begin:e,end:o}}if(f&&(a.timestamp=t(n(f,"when"))),d){F(a,d,"icon"),v(a,d,"scale","icon-scale"),v(a,d,"heading","icon-heading");const e=n(d,"hotSpot");if(e){const t=parseFloat(e.getAttribute("x")),n=parseFloat(e.getAttribute("y"));isNaN(t)||isNaN(n)||(a["icon-offset"]=[t,n])}const o=n(d,"Icon");if(o){const e=t(n(o,"href"));e&&(a.icon=e)}}if(y&&(F(a,y,"label"),v(a,y,"scale","label-scale")),N&&(F(a,N,"stroke"),v(a,N,"width","stroke-width")),x){F(a,x,"fill");const e=t(n(x,"fill")),o=t(n(x,"outline"));e&&(a["fill-opacity"]="1"===e?a["fill-opacity"]||1:0),o&&(a["stroke-opacity"]="1"===o?a["stroke-opacity"]||1:0)}if(h){const e=h.getElementsByTagName("Data"),o=h.getElementsByTagName("SimpleData");for(i=0;i<e.length;i++)a[e[i].getAttribute("name")]=t(n(e[i],"value"));for(i=0;i<o.length;i++)a[o[i].getAttribute("name")]=t(o[i])}T&&(a.visibility=t(T)),l.coordTimes.length&&(a.coordTimes=1===l.coordTimes.length?l.coordTimes[0]:l.coordTimes);const b={type:"Feature",geometry:0===l.geoms.length?null:1===l.geoms.length?l.geoms[0]:{type:"GeometryCollection",geometries:l.geoms},properties:a};return e.getAttribute("id")&&(b.id=e.getAttribute("id")),b}function*M(e){const o={},s={},r={},l=e.getElementsByTagName("Placemark"),i=e.getElementsByTagName("Style"),a=e.getElementsByTagName("StyleMap");for(let e=0;e<i.length;e++){const t=S(B(i[e])).toString(16);o["#"+i[e].getAttribute("id")]=t,s[t]=i[e]}for(let e=0;e<a.length;e++){o["#"+a[e].getAttribute("id")]=S(B(a[e])).toString(16);const s=a[e].getElementsByTagName("Pair"),l={};for(let e=0;e<s.length;e++)l[t(n(s[e],"key"))]=t(n(s[e],"styleUrl"));r["#"+a[e].getAttribute("id")]=l}for(let e=0;e<l.length;e++){const t=L(l[e],o,r,s);t&&(yield t)}}e.gpx=function(e){return{type:"FeatureCollection",features:Array.from(g(e))}},e.gpxGen=g,e.kml=function(e){return{type:"FeatureCollection",features:Array.from(M(e))}},e.kmlGen=M,e.tcx=function(e){return{type:"FeatureCollection",features:Array.from(N(e))}},e.tcxGen=N,Object.defineProperty(e,"__esModule",{value:!0})}));
+//# sourceMappingURL=togeojson.umd.js.map
+
+
+/***/ }),
+
 /***/ "./node_modules/axios/index.js":
 /*!*************************************!*\
   !*** ./node_modules/axios/index.js ***!
@@ -5358,16 +5370,18 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _components_TopNav__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/TopNav */ "./resources/js/components/TopNav.js");
 /* harmony import */ var _pages_auth_Login__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/auth/Login */ "./resources/js/pages/auth/Login.js");
 /* harmony import */ var _pages_auth_Logout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/auth/Logout */ "./resources/js/pages/auth/Logout.js");
 /* harmony import */ var _pages_auth_Register__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/auth/Register */ "./resources/js/pages/auth/Register.js");
-/* harmony import */ var _pages_entities_EntityDetails__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/entities/EntityDetails */ "./resources/js/pages/entities/EntityDetails.js");
-/* harmony import */ var _pages_home_Home__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/home/Home */ "./resources/js/pages/home/Home.js");
-/* harmony import */ var _pages_map_MapPage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/map/MapPage */ "./resources/js/pages/map/MapPage.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _pages_entities_EntitySubmit__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/entities/EntitySubmit */ "./resources/js/pages/entities/EntitySubmit.js");
+/* harmony import */ var _pages_entities_EntityDetails__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/entities/EntityDetails */ "./resources/js/pages/entities/EntityDetails.js");
+/* harmony import */ var _pages_home_Home__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/home/Home */ "./resources/js/pages/home/Home.js");
+/* harmony import */ var _pages_map_MapPage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/map/MapPage */ "./resources/js/pages/map/MapPage.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -5382,27 +5396,30 @@ __webpack_require__.r(__webpack_exports__);
 
 
 if (document.getElementById("app")) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.BrowserRouter, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_components_TopNav__WEBPACK_IMPORTED_MODULE_2__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Switch, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.BrowserRouter, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_components_TopNav__WEBPACK_IMPORTED_MODULE_2__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Switch, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
         exact: true,
         path: "/",
-        component: _pages_home_Home__WEBPACK_IMPORTED_MODULE_7__.default
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+        component: _pages_home_Home__WEBPACK_IMPORTED_MODULE_8__.default
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
         path: "/map",
-        component: _pages_map_MapPage__WEBPACK_IMPORTED_MODULE_8__.default
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+        component: _pages_map_MapPage__WEBPACK_IMPORTED_MODULE_9__.default
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
         path: "/login",
         component: _pages_auth_Login__WEBPACK_IMPORTED_MODULE_3__.default
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
         path: "/logout",
         component: _pages_auth_Logout__WEBPACK_IMPORTED_MODULE_4__.default
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
         path: "/register",
         component: _pages_auth_Register__WEBPACK_IMPORTED_MODULE_5__.default
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+        path: "/submit",
+        component: _pages_entities_EntitySubmit__WEBPACK_IMPORTED_MODULE_6__.default
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
         path: "/details",
-        component: _pages_entities_EntityDetails__WEBPACK_IMPORTED_MODULE_6__.default
+        component: _pages_entities_EntityDetails__WEBPACK_IMPORTED_MODULE_7__.default
       })]
     })]
   }), document.getElementById("app"));
@@ -5543,10 +5560,10 @@ var TopNav = function TopNav() {
             href: "#action/3.2",
             children: "Favourites"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__.default.Item, {
-            href: "#action/3.3",
-            children: "Contribute"
+            href: "/submit",
+            children: "Submit a destination"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__.default.Divider, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__.default.Item, {
-            href: "#action/3.4",
+            href: "/logout",
             children: "Logout"
           })]
         })]
@@ -6196,6 +6213,304 @@ var EntityDetails = function EntityDetails() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EntityDetails);
+
+/***/ }),
+
+/***/ "./resources/js/pages/entities/EntitySubmit.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/pages/entities/EntitySubmit.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _tmcw_togeojson__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @tmcw/togeojson */ "./node_modules/@tmcw/togeojson/dist/togeojson.umd.js");
+/* harmony import */ var _tmcw_togeojson__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_tmcw_togeojson__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/InputGroup.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/FormControl.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+function EntitySubmit() {
+  // state section
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
+      _useState2 = _slicedToArray(_useState, 2),
+      file = _useState2[0],
+      setFile = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("No file selected"),
+      _useState4 = _slicedToArray(_useState3, 2),
+      status = _useState4[0],
+      setStatus = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
+      _useState6 = _slicedToArray(_useState5, 2),
+      errors = _useState6[0],
+      setErrors = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      validated = _useState8[0],
+      setValidated = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
+    name: "",
+    region: "",
+    photo: "",
+    description: ""
+  }),
+      _useState10 = _slicedToArray(_useState9, 2),
+      _useState10$ = _useState10[0],
+      name = _useState10$.name,
+      region = _useState10$.region,
+      photo = _useState10$.photo,
+      description = _useState10$.description,
+      setData = _useState10[1]; // Handle submit and convert KML to geoJSON
+
+
+  var handleSubmit = function handleSubmit() {
+    event.preventDefault();
+    setValidated(true);
+
+    if (!file) {
+      setStatus("No file selected");
+      return;
+    }
+
+    setStatus("Loading File");
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      setStatus("File Loaded");
+      var content = e.target.result;
+      setStatus("XML parsing");
+      var xml = convertToXmlDom(content);
+
+      if (!xml) {
+        setStatus("XML parsing failed");
+        return;
+      }
+
+      setStatus("Converting to GeoJSON");
+      var geoJson = (0,_tmcw_togeojson__WEBPACK_IMPORTED_MODULE_2__.kml)(xml);
+      setStatus("Success");
+      var coords = geoJson.features.map(function (feature) {
+        return {
+          lng: feature.geometry.coordinates[0],
+          lat: feature.geometry.coordinates[1] // elv: feature.geometry.coordinates[2],     //// WIP
+
+        };
+      });
+      var request_data = {
+        name: name,
+        region: region,
+        photo: photo,
+        description: description,
+        coords: coords
+      };
+      console.log(request_data); // all form data to POST
+
+      sendToServer(request_data); //////////////
+      // console.log(setData.values);
+      // LNG/LAT on 39/40 switched - Gulf of Aden
+      /////////////
+    };
+
+    reader.readAsText(file);
+  }; // POST all form data to database
+
+
+  var sendToServer = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(request_data) {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              event.preventDefault();
+              setErrors({});
+              _context.next = 4;
+              return fetch("/api/entity/store", {
+                method: "POST",
+                headers: {
+                  Accept: "application/json",
+                  "Content-type": "application/json",
+                  "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
+                },
+                body: JSON.stringify(request_data)
+              });
+
+            case 4:
+              response = _context.sent;
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function sendToServer(_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  var convertToXmlDom = function convertToXmlDom(text) {
+    var parser = new DOMParser();
+    var xml = parser.parseFromString(text, "text/xml");
+
+    if (xml.getElementsByTagName("parsererror").length > 0) {
+      return null;
+    }
+
+    return xml;
+  }; // handle inputs from form
+
+
+  var handleChange = function handleChange(event) {
+    var allowed_names = ["name", "region", "photo", "description"],
+        name = event.target.name,
+        value = event.target.value;
+
+    if (-1 !== allowed_names.indexOf(name)) {
+      setData(function (prev_values) {
+        return _objectSpread(_objectSpread({}, prev_values), {}, _defineProperty({}, name, value));
+      });
+    }
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__.default, {
+    className: "w-50",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__.default, {
+      noValidate: true,
+      validated: validated,
+      action: "",
+      method: "",
+      onSubmit: handleSubmit,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__.default.Group, {
+        controlId: "name",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__.default.Label, {
+          children: "Name"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__.default, {
+          className: "mb-2",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__.default.Prepend, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__.default.Text, {
+              children: "\uD83C\uDF04"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__.default, {
+            type: "text",
+            name: "name",
+            value: name,
+            onChange: handleChange,
+            required: true
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__.default.Control.Feedback, {
+            type: "invalid",
+            children: "Please provide a title."
+          })]
+        }), " "]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__.default.Group, {
+        controlId: "region",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__.default.Label, {
+          children: "Region"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__.default.Control, {
+          type: "text",
+          name: "region",
+          value: region,
+          onChange: handleChange,
+          required: true
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__.default.Control.Feedback, {
+          type: "invalid",
+          children: "Please provide a region."
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__.default.Group, {
+        controlId: "photo",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__.default.Label, {
+          children: "Photo"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__.default.Control, {
+          type: "text",
+          name: "photo",
+          value: photo,
+          onChange: handleChange,
+          required: true
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__.default.Control.Feedback, {
+          type: "invalid",
+          children: "Please provide a photo."
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__.default.Group, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__.default.Label, {
+          children: "Description"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__.default.Control, {
+          type: "text",
+          name: "description",
+          value: description,
+          onChange: handleChange,
+          required: true
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__.default.Control.Feedback, {
+          type: "invalid",
+          children: "Please provide a description."
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__.default.Group, {
+        controlId: "file",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__.default.Label, {
+          children: "GPS File"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__.default.Control, {
+          type: "file",
+          required: true,
+          onChange: function onChange(e) {
+            setFile(e.target.files[0]);
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__.default.Control.Feedback, {
+          type: "invalid",
+          children: "Please provide a GPS file."
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__.default, {
+        variant: "success",
+        type: "submit",
+        children: "Submit"
+      })]
+    })
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EntitySubmit);
 
 /***/ }),
 

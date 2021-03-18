@@ -32,11 +32,11 @@ const TopNav = () => {
                         <NavDropdown.Item href="#action/3.2">
                             Favourites
                         </NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">
-                            Contribute
+                        <NavDropdown.Item href="/submit">
+                            Submit a destination
                         </NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">
+                        <NavDropdown.Item href="/logout">
                             Logout
                         </NavDropdown.Item>
                     </NavDropdown>
