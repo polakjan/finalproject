@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
     Button,
     Navbar,
@@ -8,7 +8,39 @@ import {
     FormControl,
 } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import { UserContext } from "../Hike";
 import Logout from "../pages/auth/Logout";
+
+function User(props) {
+    const user = useContext(UserContext);
+
+    // console.log("user data in User component", user);
+
+    if (user) {
+        console.log(user);
+        return (
+            <>
+                <Nav.Link disabled>Hello, {user && user.username}</Nav.Link>
+                <LinkContainer to={""}>
+                    <Nav.Link>
+                        <Logout />
+                    </Nav.Link>
+                </LinkContainer>
+            </>
+        );
+    }
+
+    return (
+        <>
+            <LinkContainer to={"/login"}>
+                <Nav.Link>Login</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to={"/register"}>
+                <Nav.Link>Register</Nav.Link>
+            </LinkContainer>
+        </>
+    );
+}
 
 const TopNav = () => {
     return (
@@ -20,19 +52,7 @@ const TopNav = () => {
                     <LinkContainer to={"/map"}>
                         <Nav.Link>Map</Nav.Link>
                     </LinkContainer>
-
-                    <LinkContainer to={"/login"}>
-                        <Nav.Link>Login</Nav.Link>
-                    </LinkContainer>
-                    <LinkContainer to={"/register"}>
-                        <Nav.Link>Register</Nav.Link>
-                    </LinkContainer>
-                    <LinkContainer to={""}>
-                        <Nav.Link>
-                            <Logout />
-                        </Nav.Link>
-                    </LinkContainer>
-
+                    <User />
                     <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                         <NavDropdown.Item href="#action/3.2">
                             Favourites
