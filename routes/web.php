@@ -13,10 +13,6 @@ use App\Http\Controllers\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/user',"UserController@user");
+
+Route::get('/user', "UserController@user");
 Route::view('/{path?}', 'welcome');
-
-
-// Route::get('user', [UserController::class, 'user']);
-
-// Route::get('/user', [UserController::class, 'user']);
