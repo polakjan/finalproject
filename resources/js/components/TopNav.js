@@ -20,6 +20,7 @@ const TopNav = () => {
                     <LinkContainer to={"/map"}>
                         <Nav.Link>Map</Nav.Link>
                     </LinkContainer>
+
                     <LinkContainer to={"/login"}>
                         <Nav.Link>Login</Nav.Link>
                     </LinkContainer>
@@ -40,9 +41,6 @@ const TopNav = () => {
                             Contribute
                         </NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">
-                            Logout
-                        </NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
                 <Form inline>
