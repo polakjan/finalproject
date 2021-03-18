@@ -4,6 +4,7 @@ import TopNav from "./components/TopNav";
 import Login from "./pages/auth/Login";
 import Logout from "./pages/auth/Logout";
 import Register from "./pages/auth/Register";
+import EntitySubmit from "./pages/entities/EntitySubmit";
 import EntityDetails from "./pages/entities/EntityDetails";
 import Home from "./pages/home/Home";
 import MapPage from "./pages/map/MapPage";
@@ -39,6 +40,7 @@ const Hike = () => {
                     <Route path="/login" component={Login} />
                     <Route path="/logout" component={Logout} />
                     <Route path="/register" component={Register} />
+                    <Route path="/submit" component={EntitySubmit} />
                     <Route path="/details" component={EntityDetails} />
                 </Switch>
             </UserContext.Provider>
