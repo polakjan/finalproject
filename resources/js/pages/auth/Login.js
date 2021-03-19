@@ -47,7 +47,6 @@ const Login = () => {
 
     return (
         <Container>
-            <Form action="/logout" method="post" onSubmit={handleSubmit}></Form>
             <Form action="/login" method="post" onSubmit={handleSubmit}>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>

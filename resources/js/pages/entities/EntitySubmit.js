@@ -58,7 +58,6 @@ function EntitySubmit() {
             }));
 
             let request_data = { name, region, photo, description, coords };
-            console.log(request_data);
 
             // all form data to POST
             sendToServer(request_data);
@@ -91,6 +90,10 @@ function EntitySubmit() {
             },
             body: JSON.stringify(request_data),
         });
+
+        // Redirect after submit
+        console.log("success, redirecting");
+        location.href = "/";
     };
 
     const convertToXmlDom = (text) => {
@@ -141,7 +144,7 @@ function EntitySubmit() {
                         />
 
                         <Form.Control.Feedback type="invalid">
-                            Please provide a title.
+                            Please provide a name.
                         </Form.Control.Feedback>
                     </InputGroup>{" "}
                 </Form.Group>
