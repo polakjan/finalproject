@@ -19,3 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('entity/store', "EntityController@store");
+Route::get('entity/fetch', "EntityController@fetch");
+Route::get('details/{id}', "EntityController@details");

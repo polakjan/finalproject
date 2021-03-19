@@ -1,6 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch,
+    useParams,
+    Redirect,
+} from "react-router-dom";
 import TopNav from "./components/TopNav";
 import Login from "./pages/auth/Login";
 import Logout from "./pages/auth/Logout";
@@ -21,7 +27,10 @@ if (document.getElementById("app")) {
                 <Route path="/logout" component={Logout} />
                 <Route path="/register" component={Register} />
                 <Route path="/submit" component={EntitySubmit} />
-                <Route path="/details" component={EntityDetails} />
+                <Route path="/details/:id" component={EntityDetails} />
+                {/* {" "}
+                    <Redirect to="/" /> */}
+                {/* </Route> */}
             </Switch>
         </Router>,
         document.getElementById("app")
