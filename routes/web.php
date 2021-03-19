@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,4 +14,4 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/user', "UserController@user");
-Route::view('/{path?}', 'welcome');
+Route::view('/{path?}', 'welcome')->where('path', '.*');

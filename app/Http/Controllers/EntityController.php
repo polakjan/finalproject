@@ -7,6 +7,22 @@ use Illuminate\Http\Request;
 
 class EntityController extends Controller
 {
+
+	public function fetch(Request $request)
+	{
+		$entities = Entity::get();
+		// dd($names);
+		return $entities;
+	}
+
+	public function details(Request $request,$id)
+	{
+		// $id = $_GET['id'];
+		$details = Entity::findOrFail($id);
+		
+		return $details;
+	}
+
     public function store(Request $request) { 
 
 		//Validate input
@@ -20,10 +36,10 @@ class EntityController extends Controller
 	 
 		 // create entity in DB
 		 $entity = new Entity;
-		 $entity->name = json_encode($request->name);
-		 $entity->region =  json_encode($request->region);
-		 $entity->photo =  json_encode($request->photo);
-		 $entity->description = json_encode($request->description);
+		 $entity->name = $request->name;
+		 $entity->region =  $request->region;
+		 $entity->photo =  $request->photo;
+		 $entity->description = $request->description;
 		 $entity->coordinates = json_encode($request->coords);
 		 $entity->save();
  
