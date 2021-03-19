@@ -10,13 +10,21 @@ import {
     Tabs,
     Table,
     Tab,
+    Form
     // Sonnet,
 } from "react-bootstrap";
 import React from "react";
 import { Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
+import Weather from '../../components/Weather';
+import Comment from '../../components/Comment';
 
 const EntityDetails = () => {
+
+    async function fetchData() { 
+        const response = await fetch(``)
+    }
+
     return (
         <Container className="my-5">
             <Row className="justify-content-center">
@@ -103,6 +111,14 @@ const EntityDetails = () => {
                         </tr>
                     </tbody>
                 </Table>
+            </Row>
+
+            <Row>
+                <Weather />
+            </Row>
+
+            <Row>
+                <Comment />
             </Row>
         </Container>
     );
