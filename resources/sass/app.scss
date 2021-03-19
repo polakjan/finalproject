@@ -6,3 +6,102 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.wrap {
+
+    min-height: 250px;
+    width: 100vw;
+    background-image: url('https://i.ibb.co/pXc81Fr/ul.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 2rem;
+
+.headin {
+    font-size: 5rem;
+    color: whitesmoke;
+    font-weight: 1200;
+    text-align: center;
+    margin-top: 2.5rem;
+}
+
+    
+  }
+  .upper, .lower {
+    display: flex;
+    width: 1000px;
+    justify-content: space-between;
+  }
+  .lower {
+    margin-left: 65px;
+    position: relative;
+    top: 0px;
+  }
+  
+  .upper img, .lower img {
+    width: 50px;
+    height: 23px;
+    opacity: 0;
+    animation: fadeIn, fadeOut;
+    animation-duration: 9s, 9s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+  }
+  @keyframes fadeIn {
+    10% {opacity: 0.5};
+    100% {opacity: 0.5};
+  }
+  @keyframes fadeOut {
+    25% {opacity: 0};
+    100% {opacity: 0};
+  }
+  
+  .upper img:first-child {
+    animation-delay: 0.5s, 3.5s;
+  }
+  .lower img:first-child {
+    animation-delay: 1s, 4s;  
+  }
+  .upper img:nth-child(2) {
+    animation-delay: 1.5s, 4.5s;
+  }
+  .lower img:nth-child(2) {
+    animation-delay: 2s, 5s;
+  }
+  .upper img:nth-child(3) {
+    animation-delay: 2.5s, 5.5s;
+  }
+  .lower img:nth-child(3) {
+    animation-delay: 3s, 6s;  
+  }
+  .upper img:nth-child(4) {
+    animation-delay: 3.5s, 6.5s;
+  }
+  .lower img:nth-child(4) {
+    animation-delay: 4s, 7s;
+  }
+  .upper img:nth-child(5) {
+    animation-delay: 4.5s, 7.5s;
+  }
+  .lower img:nth-child(5) {
+    animation-delay: 5s, 8s;  
+  }
+  .upper img:nth-child(6) {
+    animation-delay: 5.5s, 8.5s;
+  }
+  .lower img:nth-child(6) {
+    animation-delay: 6s, 9s;
+  }
+  .upper img:nth-child(7) {
+    animation-delay: 6.5s, 9.5s;
+  }
+  .lower img:nth-child(7) {
+    animation-delay: 7s, 10s;  
+  }
+  .upper img:nth-child(8) {
+    animation-delay: 7.5s, 10.5s;
+  }
+  .lower img:nth-child(8) {
+    animation-delay: 8s, 11s;
+  }
+  
+  

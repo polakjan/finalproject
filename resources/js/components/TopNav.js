@@ -26,20 +26,33 @@ function User(props) {
                         <Logout />
                     </Nav.Link>
                 </LinkContainer>
+                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                        <NavDropdown.Item href="#action/3.2">
+                            Favourites
+                        </NavDropdown.Item>
+                        <NavDropdown.Item href="/submit">
+                            Contribute
+                        </NavDropdown.Item>
+                        <NavDropdown.Divider />
+                    </NavDropdown>
             </>
         );
-    }
+    } else if (!user) {
+        return (
+            <>
+                <LinkContainer to={"/login"}>
+                    <Nav.Link>Login</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to={"/register"}>
+                    <Nav.Link>Register</Nav.Link>
+                </LinkContainer>
+            </>
+        );
+    } else return (
+        "wtf"
+    )
 
-    return (
-        <>
-            <LinkContainer to={"/login"}>
-                <Nav.Link>Login</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to={"/register"}>
-                <Nav.Link>Register</Nav.Link>
-            </LinkContainer>
-        </>
-    );
+    
 }
 
 const TopNav = () => {
@@ -49,19 +62,10 @@ const TopNav = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
+                    <User />
                     <LinkContainer to={"/map"}>
                         <Nav.Link>Map</Nav.Link>
                     </LinkContainer>
-                    <User />
-                    <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.2">
-                            Favourites
-                        </NavDropdown.Item>
-                        <NavDropdown.Item href="/submit">
-                            Contribute
-                        </NavDropdown.Item>
-                        <NavDropdown.Divider />
-                    </NavDropdown>
                 </Nav>
                 <Form inline>
                     <FormControl
