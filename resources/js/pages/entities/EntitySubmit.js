@@ -198,6 +198,9 @@ function EntitySubmit() {
                             setFile(e.target.files[0]);
                         }}
                     />
+                    <Form.Text id="fileForm" muted>
+                        Accepted filetypes: KML
+                    </Form.Text>
                     <Form.Control.Feedback type="invalid">
                         Please provide a GPS file.
                     </Form.Control.Feedback>

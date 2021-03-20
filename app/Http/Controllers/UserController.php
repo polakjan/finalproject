@@ -36,10 +36,5 @@ class UserController extends Controller
 
     {
         return Auth::user();
-        // $user = Auth::user();
-
-        // return [
-        //     'user' => $user
-        // ];
     }
 }
