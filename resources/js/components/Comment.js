@@ -18,15 +18,22 @@ import {useState, useEffect} from 'react';
 
 const Comment = () => {
     const [comment, setComment] = useState("");
+    const [errors, setErrors] = useState(null);
+    const [data, setData] = useState(null);
 
+    const handleSubmit = () => { 
+        let request_data = {comment};
 
-    const handleSubmit = async (event) => { 
+        sendToServer(request_data);
+    }
+
+    const sendToServer = async (request_data) => {
         event.preventDefault();
 
-        let request_data = { comment };
-        const response = await fetch("/comment", {
+        setErrors({});
+
+        const response = await fetch("/api/comment/store", {
             method: "POST",
-            body: JSON.stringify(request_data),
             headers: {
                 Accept: "application/json",
                 "Content-type": "application/json",
@@ -34,37 +41,35 @@ const Comment = () => {
                     .querySelector('meta[name="csrf-token"]')
                     .getAttribute("content"),
             },
+            body: JSON.stringify(request_data),
         });
-        const response_data = await response.json();
 
-        if (response.status == 200) {
-            location.href = "/";
-        } else {
-            setErrors(response_data.errors);
+        // Redirect after submit
+        console.log("success, redirecting");
+        location.href = "/details";
+    };
+
+    const handleChange = (event) => {
+        const allowed_names = ["comment"],
+            name = event.target.name,
+            value = event.target.value;
+
+        if (-1 !== allowed_names.indexOf(name)) {
+            setData((prev_values) => {
+                return { ...prev_values, [name]: value };
+            });
         }
-    }
-
-    // const handleChange = (event) => {
-    //     const allowed_names = ["email", "password"],
-    //         name = event.target.name,
-    //         value = event.target.value;
-
-    //     if (-1 !== allowed_names.indexOf(name)) {
-    //         setValues((prev_values) => {
-    //             return { ...prev_values, [name]: value };
-    //         });
-    //     }
-    // };
-
+    };
     return (
         <div>
-            <Form action="/comment" method='post' onSubmit={handleSubmit}>
-            <Form.Group>
+            <Form method='post' onSubmit={handleSubmit}>
+            <Form.Group controlId="comment">
                     <Form.Label>Comment</Form.Label>
                     <Form.Control
                         size="lg"
                         type="text"
-                        // value={comment}
+                        value={comment}
+                        onChange={handleChange}
                         name="comment"
                     />
                 </Form.Group>

@@ -21,10 +21,6 @@ import Comment from '../../components/Comment';
 
 const EntityDetails = () => {
 
-    async function fetchData() { 
-        const response = await fetch(``)
-    }
-
     return (
         <Container className="my-5">
             <Row className="justify-content-center">
