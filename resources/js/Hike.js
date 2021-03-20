@@ -28,7 +28,6 @@ const Hike = () => {
             },
         });
         const data = await response.json();
-        // console.log("user data", data);
         setUser(data);
     };
     useEffect(() => {
