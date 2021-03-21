@@ -5606,12 +5606,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -5640,19 +5634,12 @@ var Comment = function Comment() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(""),
       _useState2 = _slicedToArray(_useState, 2),
       comment = _useState2[0],
-      setComment = _useState2[1];
+      setComment = _useState2[1]; // const [errors, setErrors] = useState(null);
+  // const [data, setData] = useState(null);
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
-      _useState4 = _slicedToArray(_useState3, 2),
-      errors = _useState4[0],
-      setErrors = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
-      _useState6 = _slicedToArray(_useState5, 2),
-      data = _useState6[0],
-      setData = _useState6[1];
-
-  var handleSubmit = function handleSubmit() {
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
     var request_data = {
       comment: comment
     };
@@ -5666,9 +5653,7 @@ var Comment = function Comment() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              event.preventDefault();
-              setErrors({});
-              _context.next = 4;
+              _context.next = 2;
               return fetch("/api/comment/store", {
                 method: "POST",
                 headers: {
@@ -5679,13 +5664,13 @@ var Comment = function Comment() {
                 body: JSON.stringify(request_data)
               });
 
-            case 4:
+            case 2:
               response = _context.sent;
               // Redirect after submit
               console.log("success, redirecting");
               location.href = "/details";
 
-            case 7:
+            case 5:
             case "end":
               return _context.stop();
           }
@@ -5699,15 +5684,14 @@ var Comment = function Comment() {
   }();
 
   var handleChange = function handleChange(event) {
-    var allowed_names = ["comment"],
-        name = event.target.name,
-        value = event.target.value;
-
-    if (-1 !== allowed_names.indexOf(name)) {
-      setData(function (prev_values) {
-        return _objectSpread(_objectSpread({}, prev_values), {}, _defineProperty({}, name, value));
-      });
-    }
+    setComment(event.target.value); // const allowed_names = ["comment"],
+    //     name = event.target.name,
+    //     value = event.target.value;
+    // if (-1 !== allowed_names.indexOf(name)) {
+    //     setComment((prev_values) => {
+    //         return { ...prev_values, [name]: value };
+    //     });
+    // }
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
