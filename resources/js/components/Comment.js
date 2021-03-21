@@ -1,26 +1,16 @@
 import React from "react";
-import {
-    Container,
-    Row,
-    Image,
-    Col,
-    ButtonGroup,
-    Button,
-    ButtonToolbar,
-    Card,
-    Tabs,
-    Table,
-    Tab,
-    Form,
-    // Sonnet,
-} from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { Button, Form } from "react-bootstrap";
+import { useState } from "react";
 
 const Comment = () => {
     const [comment, setComment] = useState("");
     // const [errors, setErrors] = useState(null);
     // const [data, setData] = useState(null);
 
+    /**
+     * added event as arument for handleSubmit
+     * moved .preventDefault() here
+     */
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -52,17 +42,22 @@ const Comment = () => {
     };
 
     const handleChange = (event) => {
+        /**
+         * simplified logic
+         */
+
         setComment(event.target.value);
         // const allowed_names = ["comment"],
         //     name = event.target.name,
         //     value = event.target.value;
 
         // if (-1 !== allowed_names.indexOf(name)) {
-        //     setComment((prev_values) => {
+        //     setValues((prev_values) => {
         //         return { ...prev_values, [name]: value };
         //     });
         // }
     };
+
     return (
         <div>
             <Form method="post" onSubmit={handleSubmit}>

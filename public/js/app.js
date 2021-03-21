@@ -5637,6 +5637,11 @@ var Comment = function Comment() {
       setComment = _useState2[1]; // const [errors, setErrors] = useState(null);
   // const [data, setData] = useState(null);
 
+  /**
+   * added event as arument for handleSubmit
+   * moved .preventDefault() here
+   */
+
 
   var handleSubmit = function handleSubmit(event) {
     event.preventDefault();
@@ -5684,11 +5689,14 @@ var Comment = function Comment() {
   }();
 
   var handleChange = function handleChange(event) {
+    /**
+     * simplified logic
+     */
     setComment(event.target.value); // const allowed_names = ["comment"],
     //     name = event.target.name,
     //     value = event.target.value;
     // if (-1 !== allowed_names.indexOf(name)) {
-    //     setComment((prev_values) => {
+    //     setValues((prev_values) => {
     //         return { ...prev_values, [name]: value };
     //     });
     // }
