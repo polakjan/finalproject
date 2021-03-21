@@ -1,5 +1,10 @@
 import React, { createContext, useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch,
+    useParams,
+} from "react-router-dom";
 import TopNav from "./components/TopNav";
 import Login from "./pages/auth/Login";
 import Logout from "./pages/auth/Logout";
@@ -23,7 +28,6 @@ const Hike = () => {
             },
         });
         const data = await response.json();
-        // console.log("user data", data);
         setUser(data);
     };
     useEffect(() => {
@@ -41,7 +45,7 @@ const Hike = () => {
                     <Route path="/logout" component={Logout} />
                     <Route path="/register" component={Register} />
                     <Route path="/submit" component={EntitySubmit} />
-                    <Route path="/details" component={EntityDetails} />
+                    <Route path="/details/:id" component={EntityDetails} />
                 </Switch>
             </UserContext.Provider>
         </Router>

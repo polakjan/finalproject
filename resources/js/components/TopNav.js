@@ -47,30 +47,30 @@ const TopNav = () => {
         <Navbar collapseOnSelect bg="light" expand="lg">
             <Navbar.Brand href="/">HikeCzech</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                     <LinkContainer to={"/map"}>
                         <Nav.Link>Map</Nav.Link>
                     </LinkContainer>
-                    <User />
-                    <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.2">
-                            Favourites
-                        </NavDropdown.Item>
-                        <NavDropdown.Item href="/submit">
-                            Contribute
-                        </NavDropdown.Item>
-                        <NavDropdown.Divider />
-                    </NavDropdown>
+                    <LinkContainer to={"/favs"}>
+                        <Nav.Link>Favourites</Nav.Link>
+                    </LinkContainer>
+                    <LinkContainer to={"/submit"}>
+                        <Nav.Link>Contribute</Nav.Link>
+                    </LinkContainer>
+
+                    <Form inline>
+                        <FormControl
+                            type="text"
+                            placeholder="Search"
+                            className="mr-sm-2"
+                        />
+                        <Button variant="outline-success">Search</Button>
+                    </Form>
                 </Nav>
-                <Form inline>
-                    <FormControl
-                        type="text"
-                        placeholder="Search"
-                        className="mr-sm-2"
-                    />
-                    <Button variant="outline-success">Search</Button>
-                </Form>
+
+                <User />
             </Navbar.Collapse>
         </Navbar>
     );

@@ -16,7 +16,9 @@ trait PasswordValidationRules
 
     protected function passwordRules()
     {
-		$password = (new Password)->length(8, 20)->requireUppercase()->requireNumeric();
+	// 	$password = (new Password)->length(8, 20)->requireUppercase()->requireNumeric();
+		$password = (new Password);
+
         // (new Password)->length(8, 20)->requireUppercase();
       
         return ['required', 'string', $password, 'confirmed'];
