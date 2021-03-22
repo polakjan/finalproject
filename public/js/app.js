@@ -5871,35 +5871,35 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Weather = function Weather() {
-  // later want to insert the lat and lng in as props of this 
+  // later want to insert the lat and lng in as props of this
   // custom styling for the display
   var customStyles = {
-    fontFamily: 'Helvetica, sans-serif',
-    gradientStart: '#0181C2',
-    gradientMid: '#04A7F9',
-    gradientEnd: '#4BC4F7',
-    locationFontColor: '#FFF',
-    todayTempFontColor: '#FFF',
-    todayDateFontColor: '#B5DEF4',
-    todayRangeFontColor: '#B5DEF4',
-    todayDescFontColor: '#B5DEF4',
-    todayInfoFontColor: '#B5DEF4',
-    todayIconColor: '#FFF',
-    forecastBackgroundColor: '#FFF',
-    forecastSeparatorColor: '#DDD',
-    forecastDateColor: '#777',
-    forecastDescColor: '#777',
-    forecastRangeColor: '#777',
-    forecastIconColor: '#4BC4F7'
+    fontFamily: "Helvetica, sans-serif",
+    gradientStart: "#0181C2",
+    gradientMid: "#04A7F9",
+    gradientEnd: "#4BC4F7",
+    locationFontColor: "#FFF",
+    todayTempFontColor: "#FFF",
+    todayDateFontColor: "#B5DEF4",
+    todayRangeFontColor: "#B5DEF4",
+    todayDescFontColor: "#B5DEF4",
+    todayInfoFontColor: "#B5DEF4",
+    todayIconColor: "#FFF",
+    forecastBackgroundColor: "#FFF",
+    forecastSeparatorColor: "#DDD",
+    forecastDateColor: "#777",
+    forecastDescColor: "#777",
+    forecastRangeColor: "#777",
+    forecastIconColor: "#4BC4F7"
   };
 
   var _useWeatherBit = (0,react_open_weather__WEBPACK_IMPORTED_MODULE_1__.useWeatherBit)({
-    key: '4a383f2cbc2d4879abaa67610f4e5406',
+    key: "4a383f2cbc2d4879abaa67610f4e5406",
     // these to be changed by props later
-    lat: '50.0755',
-    lon: '14.4378',
-    lang: 'en',
-    unit: 'M' // values are (M,S,I)
+    lat: "50.0755",
+    lon: "14.4378",
+    lang: "en",
+    unit: "M" // values are (M,S,I)
 
   }),
       data = _useWeatherBit.data,
@@ -5908,14 +5908,15 @@ var Weather = function Weather() {
 
   console.log(data);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "w-50",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)((react_open_weather__WEBPACK_IMPORTED_MODULE_1___default()), {
       theme: customStyles,
       data: data,
       lang: "en",
       locationLabel: "Prague",
       unitsLabels: {
-        temperature: 'C',
-        windSpeed: 'Km/h'
+        temperature: "C",
+        windSpeed: "Km/h"
       },
       showForecast: true
     })
@@ -6478,6 +6479,57 @@ var EntityDetails = function EntityDetails() {
           children: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt voluptatibus animi eius id reprehenderit architecto nisi, obcaecati dolor veritatis? Tenetur ex repellat assumenda natus ad deserunt beatae dolore culpa voluptatum!"
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__.default, {
+        eventKey: "reviews",
+        title: "Reviews",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__.default, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+            className: "mt-2",
+            children: "Reviews"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__.default, {
+            striped: true,
+            bordered: true,
+            hover: true,
+            size: "sm",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("thead", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
+                  children: "\u2B50"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
+                  children: "Username"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
+                  children: "Comment"
+                })]
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tbody", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
+                  children: "5"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
+                  children: "Mark"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
+                  children: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab laudantium eligendi temporibus tenetur omnis quae."
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
+                  children: "1"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
+                  children: "Jacob"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
+                  children: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui tempore aspernatur, voluptas tenetur eius in incidunt optio eaque consequuntur! Aliquid a minima dicta corrupti odit?"
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
+                  children: "3"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
+                  children: "Bob"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
+                  children: "pretty good"
+                })]
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Comment__WEBPACK_IMPORTED_MODULE_3__.default, {})]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__.default, {
         eventKey: "desc",
         title: "Description",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
@@ -6489,58 +6541,13 @@ var EntityDetails = function EntityDetails() {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
           children: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi, excepturi?"
         })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_11__.default, {
+        eventKey: "weather",
+        title: "Weather Forecast",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Weather__WEBPACK_IMPORTED_MODULE_2__.default, {})
+        })
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__.default, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
-        className: "mt-2",
-        children: "Reviews"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_12__.default, {
-        striped: true,
-        bordered: true,
-        hover: true,
-        size: "sm",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("thead", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tr", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-              children: "\u2B50"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-              children: "Username"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-              children: "Comment"
-            })]
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tbody", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tr", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-              children: "5"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-              children: "Mark"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-              children: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab laudantium eligendi temporibus tenetur omnis quae."
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tr", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-              children: "1"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-              children: "Jacob"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-              children: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui tempore aspernatur, voluptas tenetur eius in incidunt optio eaque consequuntur! Aliquid a minima dicta corrupti odit?"
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tr", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-              children: "3"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-              children: "Bob"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-              children: "pretty good"
-            })]
-          })]
-        })]
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__.default, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Weather__WEBPACK_IMPORTED_MODULE_2__.default, {})
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__.default, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Comment__WEBPACK_IMPORTED_MODULE_3__.default, {})
     })]
   });
 };
