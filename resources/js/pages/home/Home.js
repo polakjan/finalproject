@@ -21,9 +21,9 @@ const Home = () => {
         fetchEntities();
     }, []);
 
-    useEffect(() => {
-        console.log(entities);
-    }, [entities]);
+    // useEffect(() => {
+    //     console.log(entities);
+    // }, [entities]);
 
     return (
         <Container className="bg-light pb-2 my-2">
@@ -40,8 +40,8 @@ const Home = () => {
                     {" "}
                     {entities.length > 0
                         ? entities.map((i) => (
-                              <Col className="p-2">
-                                  <Homecard key={i.id} data={i} />{" "}
+                              <Col key={i.id} className="p-2">
+                                  <Homecard data={i} />{" "}
                               </Col>
                           ))
                         : null}

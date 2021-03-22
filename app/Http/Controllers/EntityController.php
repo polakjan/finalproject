@@ -18,8 +18,7 @@ class EntityController extends Controller
     public function details(Request $request, $id)
     {
         // $id = $_GET['id'];
-        $details = Entity::findOrFail($id);
-
+        $details = Entity::with('comments.user')->findOrFail($id);
         return $details;
     }
 

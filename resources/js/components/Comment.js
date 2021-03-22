@@ -18,8 +18,9 @@ const Comment = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         let user_id = user.id;
+        let entity_id = id;
 
-        let request_data = { comment, user_id };
+        let request_data = { comment, user_id, entity_id };
 
         const response = await fetch("/api/comment/store", {
             method: "POST",
