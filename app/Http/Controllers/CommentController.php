@@ -9,7 +9,6 @@ class CommentController extends Controller
 {
     public function store(Request $request)
     {
-
         $this->validate($request, [
             'comment' => 'required|string|min:0|max:250'
         ]);
@@ -17,7 +16,9 @@ class CommentController extends Controller
         // create new comment in DB
 
         $comment = new Comment();
-        $comment->comment = json_encode($request->comment);
+        $comment->comment = $request->input('comment');
+        $comment->user_id = $request->input('user_id');
+
         $comment->save();
     }
 }

@@ -36,9 +36,9 @@ const EntityDetails = () => {
         fetchEntity();
     }, []);
 
-    useEffect(() => {
-        console.log(entity);
-    }, [entity]);
+    // useEffect(() => {
+    //     console.log(entity);
+    // }, [entity]);
 
     return (
         <>
@@ -122,7 +122,7 @@ const EntityDetails = () => {
                                     </tbody>
                                 </Table>
 
-                                <Comment />
+                                <Comment id={id} />
                             </Row>
                         </Tab>
                         <Tab eventKey="desc" title="Description">
