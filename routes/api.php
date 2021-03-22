@@ -22,7 +22,7 @@ use App\Http\Controllers\UserController;
 
 Route::get('/user', "UserController@user");
 
-Route::post('entity/store', "EntityController@store");
+Route::post('entity/store', "EntityController@store")->middleware('auth');
 Route::get('entity/fetch', "EntityController@fetch");
 Route::get('details/{id}', "EntityController@details");
 

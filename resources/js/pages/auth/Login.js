@@ -46,7 +46,7 @@ const Login = () => {
     };
 
     return (
-        <Container>
+        <Container className="d-flex flex-column align-items-center flex-nowrap">
             <Form action="/login" method="post" onSubmit={handleSubmit}>
                 <Form.Group>
                     <Form.Label>Email address</Form.Label>

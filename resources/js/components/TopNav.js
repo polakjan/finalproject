@@ -43,11 +43,13 @@ function User(props) {
 }
 
 const TopNav = () => {
+    const user = useContext(UserContext);
+
     return (
-        <Navbar collapseOnSelect bg="light" expand="lg">
+        <Navbar collapseOnSelect bg="white" expand="lg" fixed="top">
             <Navbar.Brand
                 href="/"
-                className="text-primary
+                className="text-success
 			"
             >
                 HikeCzech
@@ -59,13 +61,15 @@ const TopNav = () => {
                     <LinkContainer to={"/map"}>
                         <Nav.Link>Map</Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to={"/favs"}>
-                        <Nav.Link>Favourites</Nav.Link>
-                    </LinkContainer>
+
                     <LinkContainer to={"/submit"}>
                         <Nav.Link>Contribute</Nav.Link>
                     </LinkContainer>
-
+                    {user ? (
+                        <LinkContainer to={"/favs"}>
+                            <Nav.Link>Favourites</Nav.Link>
+                        </LinkContainer>
+                    ) : null}
                     <Form inline>
                         <FormControl
                             type="text"
