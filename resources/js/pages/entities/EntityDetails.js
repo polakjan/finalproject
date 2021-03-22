@@ -10,11 +10,14 @@ import {
     Tabs,
     Table,
     Tab,
+    Form,
     // Sonnet,
 } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
+import Weather from "../../components/Weather";
+import Comment from "../../components/Comment";
 
 const EntityDetails = () => {
     // state section
@@ -62,11 +65,70 @@ const EntityDetails = () => {
                     >
                         <Tab eventKey="general" title="General Info">
                             {/* <Sonnet /> */}
-                            <div>Region: {entity.region}</div>
+                            <div>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit. Deserunt voluptatibus animi
+                                eius id reprehenderit architecto nisi, obcaecati
+                                dolor veritatis? Tenetur ex repellat assumenda
+                                natus ad deserunt beatae dolore culpa
+                                voluptatum!
+                            </div>
+                        </Tab>
+                        <Tab eventKey="reviews" title="Reviews">
+                            {/* <Sonnet /> */}
+
+                            <Row>
+                                <h1 className="mt-2">Reviews</h1>
+
+                                <Table striped bordered hover size="sm">
+                                    <thead>
+                                        <tr>
+                                            <th>⭐</th>
+                                            <th>Username</th>
+                                            <th>Comment</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>Mark</td>
+                                            <td>
+                                                Lorem ipsum dolor sit amet
+                                                consectetur adipisicing elit. Ab
+                                                laudantium eligendi temporibus
+                                                tenetur omnis quae.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Jacob</td>
+                                            <td>
+                                                Lorem ipsum, dolor sit amet
+                                                consectetur adipisicing elit.
+                                                Qui tempore aspernatur, voluptas
+                                                tenetur eius in incidunt optio
+                                                eaque consequuntur! Aliquid a
+                                                minima dicta corrupti odit?
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Bob</td>
+                                            <td>pretty good</td>
+                                        </tr>
+                                    </tbody>
+                                </Table>
+
+                                <Comment />
+                            </Row>
                         </Tab>
                         <Tab eventKey="desc" title="Description">
                             {/* <Sonnet /> */}
-                            <div>{entity.description}</div>
+                            <div>
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Voluptas, aliquam laudantium
+                                numquam nostrum in ea porro. Hic vitae culpa ad!
+                            </div>
                         </Tab>
                         <Tab eventKey="elev" title="Elevation">
                             {/* <Sonnet /> */}
@@ -75,47 +137,13 @@ const EntityDetails = () => {
                                 adipisicing elit. Sequi, excepturi?
                             </div>
                         </Tab>
+                        <Tab eventKey="weather" title="Weather Forecast">
+                            {/* <Sonnet /> */}
+                            <div>
+                                <Weather />
+                            </div>
+                        </Tab>
                     </Tabs>
-                    <Row>
-                        <h1 className="mt-2">Reviews</h1>
-
-                        <Table striped bordered hover size="sm">
-                            <thead>
-                                <tr>
-                                    <th>⭐</th>
-                                    <th>Username</th>
-                                    <th>Comment</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Mark</td>
-                                    <td>
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Ab laudantium eligendi
-                                        temporibus tenetur omnis quae.
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Jacob</td>
-                                    <td>
-                                        Lorem ipsum, dolor sit amet consectetur
-                                        adipisicing elit. Qui tempore
-                                        aspernatur, voluptas tenetur eius in
-                                        incidunt optio eaque consequuntur!
-                                        Aliquid a minima dicta corrupti odit?
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Bob</td>
-                                    <td>pretty good</td>
-                                </tr>
-                            </tbody>
-                        </Table>
-                    </Row>
                 </Container>
             ) : null}
         </>
