@@ -1,8 +1,12 @@
-import React from "react";
-import { Button, Form } from "react-bootstrap";
-import { useState } from "react";
+import React, { useContext, useState } from "react";
+import { Alert, Button, Form } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import { Link } from "react-router-dom";
+import { UserContext } from "../Hike";
 
 const Comment = () => {
+    const user = useContext(UserContext);
+
     const [comment, setComment] = useState("");
     // const [errors, setErrors] = useState(null);
     // const [data, setData] = useState(null);
@@ -38,7 +42,7 @@ const Comment = () => {
 
         // Redirect after submit
         console.log("success, redirecting");
-        location.href = "/details";
+        location.href = "/details/:id";
     };
 
     const handleChange = (event) => {
@@ -57,9 +61,8 @@ const Comment = () => {
         //     });
         // }
     };
-
-    return (
-        <div>
+    const content = user ? (
+        <>
             <Form method="post" onSubmit={handleSubmit}>
                 <Form.Group controlId="comment">
                     <Form.Label>Comment</Form.Label>
@@ -71,12 +74,34 @@ const Comment = () => {
                         name="comment"
                     />
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button
+                    variant="primary"
+                    type="submit"
+                    overlay={
+                        <Alert
+                            title={"Wait a second"}
+                            content={"you must be logged in to leave a comment"}
+                        />
+                    }
+                >
                     Submit
                 </Button>
             </Form>
-        </div>
+        </>
+    ) : (
+        <Alert variant="danger">
+            <Alert.Heading>Wait a minute</Alert.Heading>
+            <p>
+                You must be registered and logged in to post comments on routes
+            </p>
+            <hr />
+            <p className="mb-0">
+                <Link to="/register">Register</Link> |{" "}
+                <Link to="/login">Login</Link>
+            </p>
+        </Alert>
     );
+    return <>{content}</>;
 };
 
 export default Comment;

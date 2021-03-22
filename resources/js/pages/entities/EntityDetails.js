@@ -46,6 +46,9 @@ const EntityDetails = () => {
                 <Container className="px-4">
                     <Row className="justify-content-center h-25 d-inline-block">
                         <Image className="w-100 h-auto" src={entity.photo} />
+                        {/*
+                        entity map
+                        */}
                     </Row>
                     <Row className="justify-content-around mt-1">
                         <LinkContainer to={"/map"}>
