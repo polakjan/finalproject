@@ -18,12 +18,9 @@ import { Link, useParams } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import Weather from "../../components/Weather";
 import Comment from "../../components/Comment";
-<<<<<<< HEAD
 // import { UserContext } from "../../Hike";
 import Admin from "../../components/Admin";
-=======
 import Moment from "react-moment";
->>>>>>> 56a783ad92f1f430b39d8eef5301540b43921c08
 
 const EntityDetails = () => {
     // const user = useContext(UserContext);
@@ -43,45 +40,6 @@ const EntityDetails = () => {
         fetchEntity();
     }, []);
 
-<<<<<<< HEAD
-    return (
-        <>
-            {entity ? (
-                <Container className="px-4">
-                    <Row className="justify-content-center h-25 d-inline-block">
-                        <Image className="w-100 h-auto" src={entity.photo} />
-                    </Row>
-                    <Row className="justify-content-around mt-1">
-                        <LinkContainer to={"/map"}>
-                            <Button variant="success">Map</Button>
-                        </LinkContainer>
-                        <Button variant="success">Download</Button>
-                        <Button variant="success">Favourite</Button>
-                        <Button variant="success">Gallery</Button>
-                        <Admin props={entity} />
-                    </Row>
-                    <Card body className="text-center my-2">
-                        <h2>{entity.name}</h2>
-                    </Card>
-                    <Tabs
-                        defaultActiveKey="general"
-                        id="uncontrolled-tab-example"
-                        className="text-center my-2"
-                    >
-                        <Tab eventKey="general" title="General Info">
-                            {/* <Sonnet /> */}
-                            <div>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit. Deserunt voluptatibus animi
-                                eius id reprehenderit architecto nisi, obcaecati
-                                dolor veritatis? Tenetur ex repellat assumenda
-                                natus ad deserunt beatae dolore culpa
-                                voluptatum!
-                            </div>
-                        </Tab>
-                        <Tab eventKey="reviews" title="Reviews">
-                            {/* <Sonnet /> */}
-=======
     console.log(entity);
 
     const content = !entity ? (
@@ -101,6 +59,7 @@ const EntityDetails = () => {
                 <Button variant="success">Download</Button>
                 <Button variant="success">Favourite</Button>
                 <Button variant="success">Gallery</Button>
+                <Admin props={entity} />
             </Row>
             <Card body className="text-center my-2">
                 <h2>{entity.name}</h2>
@@ -116,7 +75,6 @@ const EntityDetails = () => {
                 </Tab>
                 <Tab eventKey="reviews" title="Reviews">
                     {/* <Sonnet /> */}
->>>>>>> 56a783ad92f1f430b39d8eef5301540b43921c08
 
                     <Row>
                         <h1 className="mt-2">Reviews</h1>
