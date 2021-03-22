@@ -45,7 +45,13 @@ function User(props) {
 const TopNav = () => {
     return (
         <Navbar collapseOnSelect bg="light" expand="lg">
-            <Navbar.Brand href="/">HikeCzech</Navbar.Brand>
+            <Navbar.Brand
+                href="/"
+                className="text-primary
+			"
+            >
+                HikeCzech
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
             <Navbar.Collapse id="basic-navbar-nav">

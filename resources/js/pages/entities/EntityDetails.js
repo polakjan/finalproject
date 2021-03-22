@@ -43,17 +43,17 @@ const EntityDetails = () => {
     return (
         <>
             {entity ? (
-                <Container className="my-5">
-                    <Row className="justify-content-center h-50">
-                        <Image className="w-100 " src={entity.photo} />
+                <Container className="px-4">
+                    <Row className="justify-content-center h-25 d-inline-block">
+                        <Image className="w-100 h-auto" src={entity.photo} />
                     </Row>
                     <Row className="justify-content-around mt-1">
                         <LinkContainer to={"/map"}>
-                            <Button variant="secondary">Map</Button>
+                            <Button variant="success">Map</Button>
                         </LinkContainer>
-                        <Button variant="secondary">Download</Button>
-                        <Button variant="secondary">Favourite</Button>
-                        <Button variant="secondary">Gallery</Button>
+                        <Button variant="success">Download</Button>
+                        <Button variant="success">Favourite</Button>
+                        <Button variant="success">Gallery</Button>
                     </Row>
                     <Card body className="text-center my-2">
                         <h2>{entity.name}</h2>

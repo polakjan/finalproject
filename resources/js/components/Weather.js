@@ -38,7 +38,7 @@ const Weather = () => {
     console.log(data);
 
     return (
-        <div className="w-50">
+        <div className="w-100 h-75">
             <ReactWeather
                 theme={customStyles}
                 data={data}
