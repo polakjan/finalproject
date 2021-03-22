@@ -46,11 +46,11 @@ const EntityDetails = () => {
                     </Row>
                     <Row className="justify-content-around mt-1">
                         <LinkContainer to={"/map"}>
-                            <Button variant="secondary">Map</Button>
+                            <Button variant="success">Map</Button>
                         </LinkContainer>
-                        <Button variant="secondary">Download</Button>
-                        <Button variant="secondary">Favourite</Button>
-                        <Button variant="secondary">Gallery</Button>
+                        <Button variant="success">Download</Button>
+                        <Button variant="success">Favourite</Button>
+                        <Button variant="success">Gallery</Button>
                     </Row>
                     <Card body className="text-center my-2">
                         <h2>{entity.name}</h2>

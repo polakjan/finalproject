@@ -3,11 +3,11 @@ import { Carousel } from "react-bootstrap";
 
 const Car = () => {
     return (
-        <Carousel className="shadow rounded w-100 my-3">
+        <Carousel className="shadow rounded w-100 my-3 ">
             <Carousel.Item>
                 <img
                     className="d-block w-100 rounded"
-                    src="https://picsum.photos/id/10/1200/400"
+                    src="https://picsum.photos/id/10/1200/500"
                     alt="Relaxing walks"
                 />
 
@@ -19,7 +19,7 @@ const Car = () => {
             <Carousel.Item>
                 <img
                     className="d-block w-100 rounded"
-                    src="https://picsum.photos/id/569/1200/400"
+                    src="https://picsum.photos/id/569/1200/500"
                     alt="Relaxing walks"
                 />
 
@@ -31,7 +31,7 @@ const Car = () => {
             <Carousel.Item>
                 <img
                     className="d-block w-100 rounded"
-                    src="https://picsum.photos/id/416/1200/400"
+                    src="https://picsum.photos/id/416/1200/500"
                     alt="Explore Czech Republic"
                 />
 
@@ -45,11 +45,11 @@ const Car = () => {
             <Carousel.Item>
                 <img
                     className="d-block w-100 rounded"
-                    src="https://picsum.photos/id/203/1200/400"
+                    src="https://picsum.photos/id/203/1200/500"
                     alt="On a bike"
                 />
                 <Carousel.Caption>
-                    <h2>On your bike!</h2>
+                    <h2 className="text-body">On your bike!</h2>
                     <p>
                         A bicycle ride around the world begins with a single
                         pedal stroke.

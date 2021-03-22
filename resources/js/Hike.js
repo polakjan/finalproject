@@ -39,13 +39,15 @@ const Hike = () => {
             <UserContext.Provider value={user}>
                 <TopNav />
                 <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route path="/map" component={MapPage} />
-                    <Route path="/login" component={Login} />
-                    <Route path="/logout" component={Logout} />
-                    <Route path="/register" component={Register} />
-                    <Route path="/submit" component={EntitySubmit} />
-                    <Route path="/details/:id" component={EntityDetails} />
+                    <main className="mt-4 pt-5">
+                        <Route exact path="/" component={Home} />
+                        <Route path="/map" component={MapPage} />
+                        <Route path="/login" component={Login} />
+                        <Route path="/logout" component={Logout} />
+                        <Route path="/register" component={Register} />
+                        <Route path="/submit" component={EntitySubmit} />
+                        <Route path="/details/:id" component={EntityDetails} />
+                    </main>
                 </Switch>
             </UserContext.Provider>
         </Router>
