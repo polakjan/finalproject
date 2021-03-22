@@ -21,7 +21,7 @@ const Hike = () => {
     const [user, setUser] = useState(null);
 
     const loadCurrentUser = async () => {
-        console.log("Loading current user information");
+        // console.log("Loading current user information");
         const response = await fetch("/api/user", {
             headers: {
                 Accept: "application/json",

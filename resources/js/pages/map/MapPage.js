@@ -1,7 +1,10 @@
 import React from "react";
 import { Container, Image } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
-
+/**
+ *
+ * map of the czech republic with all hikes
+ */
 const MapPage = () => {
     return (
         <Container fluid>

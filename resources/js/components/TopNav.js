@@ -7,10 +7,7 @@ import Logout from "../pages/auth/Logout";
 function User(props) {
     const user = useContext(UserContext);
 
-    // console.log("user data in User component", user);
-
     if (user) {
-        console.log(user);
         return (
             <>
                 <Nav.Link disabled>Hello, {user && user.username}</Nav.Link>
