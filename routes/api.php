@@ -22,3 +22,4 @@ Route::get('/user', "UserController@user");
 // 	});
 
 Route::post('/entity/store', "EntityController@store");
+Route::post('/comment/store', "CommentController@store");

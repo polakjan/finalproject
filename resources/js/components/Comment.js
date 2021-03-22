@@ -1,36 +1,28 @@
-import React from 'react'
-import {
-    Container,
-    Row,
-    Image,
-    Col,
-    ButtonGroup,
-    Button,
-    ButtonToolbar,
-    Card,
-    Tabs,
-    Table,
-    Tab,
-    Form
-    // Sonnet,
-} from "react-bootstrap";
-import {useState, useEffect} from 'react';
+import React from "react";
+import { Button, Form } from "react-bootstrap";
+import { useState } from "react";
 
 const Comment = () => {
     const [comment, setComment] = useState("");
-    const [errors, setErrors] = useState(null);
-    const [data, setData] = useState(null);
+    // const [errors, setErrors] = useState(null);
+    // const [data, setData] = useState(null);
 
-    const handleSubmit = () => { 
-        let request_data = {comment};
-
-        sendToServer(request_data);
-    }
-
-    const sendToServer = async (request_data) => {
+    /**
+     * added event as arument for handleSubmit
+     * moved .preventDefault() here
+     */
+    const handleSubmit = (event) => {
         event.preventDefault();
 
-        setErrors({});
+        let request_data = { comment };
+
+        sendToServer(request_data);
+    };
+
+    const sendToServer = async (request_data) => {
+        // event.preventDefault();
+
+        // setErrors({});
 
         const response = await fetch("/api/comment/store", {
             method: "POST",
@@ -50,20 +42,26 @@ const Comment = () => {
     };
 
     const handleChange = (event) => {
-        const allowed_names = ["comment"],
-            name = event.target.name,
-            value = event.target.value;
+        /**
+         * simplified logic
+         */
 
-        if (-1 !== allowed_names.indexOf(name)) {
-            setData((prev_values) => {
-                return { ...prev_values, [name]: value };
-            });
-        }
+        setComment(event.target.value);
+        // const allowed_names = ["comment"],
+        //     name = event.target.name,
+        //     value = event.target.value;
+
+        // if (-1 !== allowed_names.indexOf(name)) {
+        //     setValues((prev_values) => {
+        //         return { ...prev_values, [name]: value };
+        //     });
+        // }
     };
+
     return (
         <div>
-            <Form method='post' onSubmit={handleSubmit}>
-            <Form.Group controlId="comment">
+            <Form method="post" onSubmit={handleSubmit}>
+                <Form.Group controlId="comment">
                     <Form.Label>Comment</Form.Label>
                     <Form.Control
                         size="lg"
@@ -74,11 +72,11 @@ const Comment = () => {
                     />
                 </Form.Group>
                 <Button variant="primary" type="submit">
-                        Submit
-                </Button> 
+                    Submit
+                </Button>
             </Form>
         </div>
-    )
-}
+    );
+};
 
-export default Comment
+export default Comment;
