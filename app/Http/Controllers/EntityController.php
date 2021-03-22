@@ -17,7 +17,7 @@ class EntityController extends Controller
 
 	public function details(Request $request,$id)
 	{
-		// $id = $_GET['id'];
+		
 		$details = Entity::findOrFail($id);
 		
 		return $details;
@@ -48,4 +48,11 @@ class EntityController extends Controller
 			 'message' => 'Review was successfully saved'
 		 ];
 	 }
+
+	 public function destroy($id) {
+			
+		$entity = Entity::find($id);
+		$entity->delete();
+		return redirect('/');
+	}
 }

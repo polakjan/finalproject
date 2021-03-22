@@ -1,12 +1,5 @@
 import React, { useContext } from "react";
-import {
-    Button,
-    Navbar,
-    Nav,
-    NavDropdown,
-    Form,
-    FormControl,
-} from "react-bootstrap";
+import { Button, Navbar, Nav, Form, FormControl } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { UserContext } from "../Hike";
 import Logout from "../pages/auth/Logout";

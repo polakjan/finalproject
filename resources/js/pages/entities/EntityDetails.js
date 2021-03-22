@@ -13,13 +13,16 @@ import {
     Form,
     // Sonnet,
 } from "react-bootstrap";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import Weather from "../../components/Weather";
 import Comment from "../../components/Comment";
+// import { UserContext } from "../../Hike";
+import Admin from "../../components/Admin";
 
 const EntityDetails = () => {
+    // const user = useContext(UserContext);
     // state section
     const [entity, setEntity] = useState({});
     let { id } = useParams();
@@ -36,10 +39,6 @@ const EntityDetails = () => {
         fetchEntity();
     }, []);
 
-    useEffect(() => {
-        console.log(entity);
-    }, [entity]);
-
     return (
         <>
             {entity ? (
@@ -54,6 +53,7 @@ const EntityDetails = () => {
                         <Button variant="success">Download</Button>
                         <Button variant="success">Favourite</Button>
                         <Button variant="success">Gallery</Button>
+                        <Admin props={entity} />
                     </Row>
                     <Card body className="text-center my-2">
                         <h2>{entity.name}</h2>
