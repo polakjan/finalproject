@@ -38,9 +38,8 @@ const EntityDetails = () => {
 
     useEffect(() => {
         fetchEntity();
+        console.log(entity);
     }, []);
-
-    console.log(entity);
 
     const content = !entity ? (
         <div>

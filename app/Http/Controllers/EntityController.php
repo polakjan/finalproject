@@ -49,4 +49,8 @@ class EntityController extends Controller
             'message' => 'Review was successfully saved'
         ];
     }
+    public function merge()
+    {
+        dd('merged');
+    }
 }
