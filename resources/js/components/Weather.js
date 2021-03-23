@@ -35,6 +35,11 @@ const Weather = () => {
         unit: "M", // values are (M,S,I)
     });
 
+<<<<<<< HEAD
+=======
+    // console.log(data);
+
+>>>>>>> mike2
     return (
         <div className="w-100 h-75">
             <ReactWeather
