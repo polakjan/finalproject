@@ -29,11 +29,8 @@
     "dependencies": {
         "@react-google-maps/api": "^2.1.1",
         "@tmcw/togeojson": "^4.3.0",
-<<<<<<< HEAD
         "moment": "^2.29.1",
-=======
         "dotenv": "^8.2.0",
->>>>>>> mike2
         "react-bootstrap": "^1.5.2",
         "react-google-maps": "^9.4.5",
         "react-moment": "^1.1.1",

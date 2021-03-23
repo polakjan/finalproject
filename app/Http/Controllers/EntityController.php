@@ -41,7 +41,7 @@ class EntityController extends Controller
         $entity->photo =  $request->photo;
         $entity->description = $request->description;
         $entity->coordinates = json_encode($request->coords);
-        // $entity->coordinates = $request->coords->toJson();
+
 
         $entity->save();
 

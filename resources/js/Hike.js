@@ -11,7 +11,6 @@ import Logout from "./pages/auth/Logout";
 import Register from "./pages/auth/Register";
 import EntitySubmit from "./pages/entities/EntitySubmit";
 import EntityDetails from "./pages/entities/EntityDetails";
-import EntityDelete from "./pages/entities/EntityDelete";
 import Home from "./pages/home/Home";
 import MapPage from "./pages/map/MapPage";
 
