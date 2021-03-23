@@ -74,42 +74,33 @@ const EntityDetails = () => {
                 </Tab>
                 <Tab eventKey="reviews" title="Reviews">
                     {/* <Sonnet /> */}
-
-                    <Row>
+                    <Container>
                         <h1 className="mt-2">Reviews</h1>
+                        <Row>
+                            <Col>
+                                <h3>Username</h3>
+                            </Col>
+                            <Col>
+                                <h3>Review</h3>
+                            </Col>
+                        </Row>
+                        {entity.comments &&
+                            entity.comments.map((comment) => (
+                                <Row key={comment.id}>
+                                    <Col>{comment.user.username}</Col>
+                                    <Col>
+                                        {comment.comment}{" "}
+                                        <Moment fromNow ago>
+                                            {comment.updated_at}
+                                        </Moment>{" "}
+                                        ago
+                                    </Col>
+                                    <Admin comment={comment} type={"comment"} />
+                                </Row>
+                            ))}
+                    </Container>
 
-                        <Table striped bordered hover size="sm">
-                            <thead>
-                                <tr>
-                                    <th>Username</th>
-                                    <th colSpan="2">Review</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {entity.comments &&
-                                    entity.comments.map((comment) => (
-                                        <>
-                                            <tr key={comment.id}>
-                                                <td>{comment.user.username}</td>
-                                                <td>{comment.comment}</td>
-                                                <td>
-                                                    <Moment fromNow ago>
-                                                        {comment.updated_at}
-                                                    </Moment>{" "}
-                                                    ago
-                                                </td>
-                                                <Admin
-                                                    comment={comment}
-                                                    type={"comment"}
-                                                />
-                                            </tr>
-                                        </>
-                                    ))}
-                            </tbody>
-                        </Table>
-
-                        <Comment id={id} />
-                    </Row>
+                    <Comment id={id} />
                 </Tab>
                 <Tab eventKey="desc" title="Description">
                     {/* <Sonnet /> */}
