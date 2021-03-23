@@ -14,20 +14,23 @@ import {
     Carousel,
     // Sonnet,
 } from "react-bootstrap";
+import { Heart, HeartFill } from "react-bootstrap-icons";
+
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import Weather from "../../components/Weather";
 import Comment from "../../components/Comment";
-// import { UserContext } from "../../Hike";
+import { UserContext } from "../../Hike";
 import Admin from "../../components/Admin";
 import Moment from "react-moment";
 import Mapper from "../../components/Mapper";
 
 const EntityDetails = () => {
-    // const user = useContext(UserContext);
+    const user = useContext(UserContext);
     // state section
     const [entity, setEntity] = useState(null);
+    const [favorite, setFavorite] = useState(0);
     let { id } = useParams();
 
     // Fetch entity data
@@ -36,12 +39,22 @@ const EntityDetails = () => {
         const response = await fetch(url);
         const data = await response.json();
         setEntity(data);
+        console.log(data);
     }
 
     useEffect(() => {
         fetchEntity();
-        console.log(entity);
     }, []);
+
+    async function handleFavorite() {
+        // let id = user;
+        console.log(user);
+        const url = `/api/my_favorites`;
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);
+        // favorite === 1 ? setFavorite(0) : setFavorite(1);
+    }
 
     const content = !entity ? (
         <div>
@@ -58,7 +71,11 @@ const EntityDetails = () => {
                     <Button variant="success">Map</Button>
                 </LinkContainer>
                 <Button variant="success">Download</Button>
-                <Button variant="success">Favourite</Button>
+
+                <Button variant="outline-danger" onClick={handleFavorite}>
+                    {favorite === 1 ? <HeartFill /> : <Heart />}
+                </Button>
+
                 <Button variant="success">Gallery</Button>
                 <Admin entity={entity} type={"entity"} />
             </Row>
@@ -75,13 +92,6 @@ const EntityDetails = () => {
                     <div>?? what goes here ??</div>
                 </Tab>
                 <Tab eventKey="gallery" title="Gallery">
-                    {/* <Row>
-                        <img
-                            className=" w-100 rounded overflow-hidden"
-                            src={entity.photo}
-                            alt="Image"
-                        />
-                    </Row> */}
                     <Container>
                         <Row xs={2} md={4}>
                             <Image src={entity.photo} thumbnail />

@@ -17,8 +17,9 @@ class EntityController extends Controller
 
     public function details(Request $request, $id)
     {
-        // $id = $_GET['id'];
+       
         $details = Entity::with('comments.user')->findOrFail($id);
+       
         return $details;
     }
 
@@ -56,4 +57,18 @@ class EntityController extends Controller
 
         Entity::findOrFail($id)->delete();
     }
+
+	public function favoritePost(Entity $entity)
+	{
+		Auth::user()->favorites()->attach($entity->id);
+
+		return back();
+	}
+
+		public function unFavoritePost(Entity $entity)
+	{
+		Auth::user()->favorites()->detach($entity->id);
+
+		return back();
+	}
 }

@@ -13,6 +13,7 @@ import EntitySubmit from "./pages/entities/EntitySubmit";
 import EntityDetails from "./pages/entities/EntityDetails";
 import Home from "./pages/home/Home";
 import MapPage from "./pages/map/MapPage";
+import Favorites from "./pages/favorites/Favorites";
 
 export const UserContext = createContext(null);
 export const GoogleContext = createContext(null);
@@ -51,6 +52,7 @@ const Hike = (props) => {
                             <Route path="/logout" component={Logout} />
                             <Route path="/register" component={Register} />
                             <Route path="/submit" component={EntitySubmit} />
+                            <Route path="/favs" component={Favorites} />
                             <Route
                                 path="/details/:id"
                                 component={EntityDetails}
