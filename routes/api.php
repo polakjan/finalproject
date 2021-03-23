@@ -25,7 +25,9 @@ Route::get('/user', "UserController@user");
 Route::post('entity/store', "EntityController@store")->middleware('auth');
 Route::get('entity/fetch', "EntityController@fetch");
 Route::get('details/{id}', "EntityController@details");
-Route::post('/entity/{id}/destroy',  "EntityController@destroy")->name('delete');
+Route::post('/entity/{id}/destroy',  "EntityController@destroy")->middleware('can:admin');
 
 
 Route::post('/comment/store', "CommentController@store");
+Route::post('/comment/{id}/destroy',  "CommentController@destroy")->middleware('can:admin');
+

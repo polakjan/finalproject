@@ -14,8 +14,27 @@ function Admin(props) {
     const handleShow = () => setShow(true);
 
     async function deleteEntity() {
-        const id = props.props.id;
+        const id = props.entity.id;
         const response = fetch(`/api/entity/${id}/destroy`, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": document
+                    .querySelector('meta[name="csrf-token"]')
+                    .getAttribute("content"),
+            },
+            body: JSON.stringify({
+                id: id,
+            }),
+        });
+
+        location.href = "/";
+    }
+
+    async function deleteComment() {
+        const id = props.comment.id;
+        const response = fetch(`/api/comment/${id}/destroy`, {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -37,7 +56,7 @@ function Admin(props) {
             {user && user.role === "admin" ? (
                 <div>
                     <Button variant="danger" onClick={handleShow}>
-                        Delete entity
+                        Delete
                     </Button>
 
                     <Modal show={show} onHide={handleClose}>
@@ -45,7 +64,7 @@ function Admin(props) {
                             <Modal.Title>Confirm deletion</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            Do you really want to delete this entity?
+                            Are you sure you want to delete this entity?
                         </Modal.Body>
                         <Modal.Footer>
                             <Button variant="secondary" onClick={handleClose}>
@@ -53,6 +72,9 @@ function Admin(props) {
                             </Button>
 
                             <Button variant="danger" onClick={deleteEntity}>
+                                Delete
+                            </Button>
+                            <Button variant="danger" onClick={deleteComment}>
                                 Delete
                             </Button>
                         </Modal.Footer>

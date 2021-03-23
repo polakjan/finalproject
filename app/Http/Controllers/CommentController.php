@@ -26,4 +26,14 @@ class CommentController extends Controller
 
         $comment->save();
     }
+
+	
+	public function destroy($id) {
+			
+		$comment = Comment::find($id);
+		
+		$comment->destroy();
+
+		return redirect('/');
+	}
 }

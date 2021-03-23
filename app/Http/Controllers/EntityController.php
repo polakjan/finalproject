@@ -40,8 +40,9 @@ class EntityController extends Controller
         $entity->region =  $request->region;
         $entity->photo =  $request->photo;
         $entity->description = $request->description;
-        //  $entity->coordinates = json_encode($request->coords);
-        $entity->coordinates = $request->coords->toJson();
+        $entity->coordinates = json_encode($request->coords);
+        // $entity->coordinates = $request->coords->toJson();
+
         $entity->save();
 
         return [
@@ -49,8 +50,12 @@ class EntityController extends Controller
             'message' => 'Review was successfully saved'
         ];
     }
-    public function merge()
-    {
-        dd('merged');
-    }
+ 
+	public function destroy($id) {
+			
+		$entity = Entity::find($id);
+		$entity->destroy();
+
+		return redirect('/');
+	}
 }

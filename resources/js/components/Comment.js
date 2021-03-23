@@ -8,6 +8,7 @@ const Comment = (props) => {
     const user = useContext(UserContext);
     const { id } = props;
     const [comment, setComment] = useState("");
+
     // const [errors, setErrors] = useState(null);
     // const [data, setData] = useState(null);
 
@@ -64,11 +65,15 @@ const Comment = (props) => {
                     <Form.Control
                         size="lg"
                         type="text"
+                        as="textarea"
                         value={comment}
                         onChange={handleChange}
                         name="comment"
                     />
                 </Form.Group>
+                <Form.Control.Feedback type="invalid">
+                    Max 255 characters.
+                </Form.Control.Feedback>
                 <Button
                     variant="primary"
                     type="submit"

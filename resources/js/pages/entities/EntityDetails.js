@@ -38,7 +38,7 @@ const EntityDetails = () => {
 
     useEffect(() => {
         fetchEntity();
-        console.log(entity);
+        // console.log(entity);
     }, []);
 
     const content = !entity ? (
@@ -88,16 +88,19 @@ const EntityDetails = () => {
                             <tbody>
                                 {entity.comments &&
                                     entity.comments.map((comment) => (
-                                        <tr key={comment.id}>
-                                            <td>{comment.user.username}</td>
-                                            <td>{comment.comment}</td>
-                                            <td>
-                                                <Moment fromNow ago>
-                                                    {comment.updated_at}
-                                                </Moment>{" "}
-                                                ago
-                                            </td>
-                                        </tr>
+                                        <>
+                                            <tr key={comment.id}>
+                                                <td>{comment.user.username}</td>
+                                                <td>{comment.comment}</td>
+                                                <td>
+                                                    <Moment fromNow ago>
+                                                        {comment.updated_at}
+                                                    </Moment>{" "}
+                                                    ago
+                                                </td>
+                                                <Admin props={comment} />
+                                            </tr>
+                                        </>
                                     ))}
                             </tbody>
                         </Table>
