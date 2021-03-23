@@ -23,13 +23,11 @@ class CommentFactory extends Factory
      */
     public function definition()
     {
-        $users = User::all()->count();
-        $entities = Entity::all()->count();
 
         return [
             //
             'user_id' => User::factory(),
-            'entity_id' => $this->faker->numberBetween(1, $entities),
+            'entity_id' => Entity::factory(),
             'comment' => $this->faker->sentence,
             'created_at' => $this->faker->dateTimeThisDecade('+0 years')
         ];

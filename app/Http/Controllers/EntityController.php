@@ -8,55 +8,6 @@ use Illuminate\Http\Request;
 class EntityController extends Controller
 {
 
-<<<<<<< HEAD
-	public function fetch(Request $request)
-	{
-		$entities = Entity::get();
-		// dd($names);
-		return $entities;
-	}
-
-	public function details(Request $request,$id)
-	{
-		
-		$details = Entity::findOrFail($id);
-		
-		return $details;
-	}
-
-    public function store(Request $request) { 
-
-		//Validate input
-		 $this->validate($request, [
-			 'name' => 'required|min:0|max:100',
-			 'region' => 'required|min:0|max:100',
-			 'photo' => 'required|min:0',
-			 'description' => 'required|min:0|max:250',
-			 'coords' => 'required',
-		 ]);
-	 
-		 // create entity in DB
-		 $entity = new Entity;
-		 $entity->name = $request->name;
-		 $entity->region =  $request->region;
-		 $entity->photo =  $request->photo;
-		 $entity->description = $request->description;
-		 $entity->coordinates = json_encode($request->coords);
-		 $entity->save();
- 
-		 return [
-			 'status' => 'success',
-			 'message' => 'Review was successfully saved'
-		 ];
-	 }
-
-	 public function destroy($id) {
-			
-		$entity = Entity::find($id);
-		$entity->delete();
-		return redirect('/');
-	}
-=======
     public function fetch(Request $request)
     {
         $entities = Entity::get();
@@ -98,5 +49,4 @@ class EntityController extends Controller
             'message' => 'Review was successfully saved'
         ];
     }
->>>>>>> 56a783ad92f1f430b39d8eef5301540b43921c08
 }
