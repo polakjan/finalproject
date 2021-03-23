@@ -15,8 +15,13 @@ import Home from "./pages/home/Home";
 import MapPage from "./pages/map/MapPage";
 
 export const UserContext = createContext(null);
+export const GoogleContext = createContext(null);
 
-const Hike = () => {
+const Hike = (props) => {
+
+const key = props.config;
+console.log(props.config);
+
     const [user, setUser] = useState(null);
 
     const loadCurrentUser = async () => {
@@ -37,6 +42,8 @@ const Hike = () => {
     return (
         <Router>
             <UserContext.Provider value={user}>
+            <GoogleContext.Provider value={key}>
+            
                 <TopNav />
                 <Switch>
                     <Route exact path="/" component={Home} />
@@ -47,9 +54,12 @@ const Hike = () => {
                     <Route path="/submit" component={EntitySubmit} />
                     <Route path="/details/:id" component={EntityDetails} />
                 </Switch>
+
+            </GoogleContext.Provider>
             </UserContext.Provider>
         </Router>
     );
 };
 
 export default Hike;
+ 

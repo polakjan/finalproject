@@ -23,12 +23,6 @@ import BigMap from "../../components/BigMap";
     function listPoints (data) {
 
         return data.map(e => JSON.parse(e.coordinates)[0]);
-        // let b = "";
-        // console.log(a);
-        // a.forEach(element => {
-        //     b += `<Marker position=${element}></Marker>`;
-        // });
-        // console.log(b);
 
     }
 

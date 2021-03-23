@@ -12,7 +12,7 @@
   // line 36 pops off the last object in array of coordinates. Mapy.cz KML->geoJSON->coords array has, for some reason, weirdness in the fianl element.
   // should a Czech route place you in the Gulf of Aden...we've been there. Warm water. Switch lat/lng.
   ////////// ////////// ////////// 
-  import React from "react";
+  import React, { useState, useEffect, useContext } from "react";
   import {
     GoogleMap,
     withScriptjs,
@@ -22,12 +22,23 @@
     InfoWindow,
   } from "react-google-maps";
 
+  import {GoogleContext} from "../Hike";
 
 
   function Mapper(props) {
 
     let polycoords = JSON.parse(props.entity.coordinates);
     console.log(polycoords);
+
+    const apiKeyContext = useContext(GoogleContext);
+    const apiKey = apiKeyContext['REACT_APP_GOOGLE_API_KEY'];
+
+    console.log(apiKey);
+
+
+
+
+
 
     // return (
     //     <p>XXXXXX</p>
@@ -78,12 +89,13 @@
       );
     }
     const WrappedMap = withScriptjs(withGoogleMap(Map));
+    console.log("google key", process.env.REACT_APP_GOOGLE_KEY);
+    console.log(process.env);
     return (
       <>
         <div className="Mapper" style={{ width: "100vw", height: "20rem" }}>
           <WrappedMap
-            // googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
-            googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDKK-nywrULN5O7_p5hd287jTKb-aSdV9o`}
+            googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${apiKey}`}
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={<div style={{ height: `100%` }} />}
             mapElement={<div style={{ height: `100%` }} />}
