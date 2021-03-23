@@ -11,6 +11,7 @@ import {
     Table,
     Tab,
     Form,
+    Carousel,
     // Sonnet,
 } from "react-bootstrap";
 import React, { useState, useEffect, useContext } from "react";
@@ -48,9 +49,6 @@ const EntityDetails = () => {
         </div>
     ) : (
         <Container className="px-4">
-            <Row className="justify-content-center h-25 d-inline-block">
-                <Image className="w-100 h-auto" src={entity.photo} />
-            </Row>
             <Row>
                 <Mapper entity={entity} />
             </Row>
@@ -76,7 +74,25 @@ const EntityDetails = () => {
                     {/* <Sonnet /> */}
                     <div>?? what goes here ??</div>
                 </Tab>
-
+                <Tab eventKey="gallery" title="Gallery">
+                    {/* <Row>
+                        <img
+                            className=" w-100 rounded overflow-hidden"
+                            src={entity.photo}
+                            alt="Image"
+                        />
+                    </Row> */}
+                    <Container>
+                        <Row xs={2} md={4}>
+                            <Image src={entity.photo} thumbnail />
+                            <Image src={entity.photo} thumbnail />
+                            <Image src={entity.photo} thumbnail />
+                            <Image src={entity.photo} thumbnail />
+                            <Image src={entity.photo} thumbnail />
+                            <Image src={entity.photo} thumbnail />
+                        </Row>
+                    </Container>
+                </Tab>
                 <Tab eventKey="reviews" title="Reviews">
                     {/* <Sonnet /> */}
                     <Container>
@@ -123,6 +139,8 @@ const EntityDetails = () => {
                     <div>
                         <Weather />
                     </div>
+
+                    <Button variant="success">Gallery</Button>
                 </Tab>
             </Tabs>
         </Container>
