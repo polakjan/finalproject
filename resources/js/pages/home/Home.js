@@ -5,6 +5,7 @@ import Homecard from "./Homecard";
 import ScrollToTop from "react-scroll-up";
 import icon from "./up-arrow.png";
 
+
 const Home = () => {
     // state section
     const [entities, setEntities] = useState({});

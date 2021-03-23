@@ -49,11 +49,16 @@ function EntitySubmit() {
             setStatus("Converting to GeoJSON");
 
             const geoJson = kml(xml);
-            setStatus("Success");
+            console.log(geoJson);
+            setStatus('Success');
 
-            const coords = geoJson.features.map((feature) => ({
-                lng: feature.geometry.coordinates[0],
-                lat: feature.geometry.coordinates[1],
+            const coordsR = geoJson.features[geoJson.features.length -1].geometry.coordinates;
+
+            console.log(coordsR);
+
+            let coords = coordsR.map((point) => ({
+                lng: point[0],
+                lat: point[1]
                 // elv: feature.geometry.coordinates[2],     //// WIP
             }));
 
@@ -62,12 +67,8 @@ function EntitySubmit() {
             // all form data to POST
             sendToServer(request_data);
 
-            //////////////
-
-            // console.log(setData.values);
-            // LNG/LAT on 39/40 switched - Gulf of Aden
-
-            /////////////
+            
+            
         };
 
         reader.readAsText(file);

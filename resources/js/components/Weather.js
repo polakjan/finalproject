@@ -35,7 +35,7 @@ const Weather = () => {
         unit: "M", // values are (M,S,I)
     });
 
-    console.log(data);
+    // console.log(data);
 
     return (
         <div className="w-100 h-75">

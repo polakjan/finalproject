@@ -18,10 +18,11 @@ import { Link, useParams } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import Weather from "../../components/Weather";
 import Comment from "../../components/Comment";
+import Mapper from "../../components/Mapper";
 
 const EntityDetails = () => {
     // state section
-    const [entity, setEntity] = useState({});
+    const [entity, setEntity] = useState(null);
     let { id } = useParams();
 
     // Fetch entity data
@@ -46,6 +47,9 @@ const EntityDetails = () => {
                 <Container className="px-4">
                     <Row className="justify-content-center h-25 d-inline-block">
                         <Image className="w-100 h-auto" src={entity.photo} />
+                    </Row>
+                    <Row >
+                        <Mapper entity={entity}/>
                     </Row>
                     <Row className="justify-content-around mt-1">
                         <LinkContainer to={"/map"}>
