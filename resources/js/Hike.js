@@ -15,12 +15,16 @@ import Home from "./pages/home/Home";
 import MapPage from "./pages/map/MapPage";
 
 export const UserContext = createContext(null);
+export const GoogleContext = createContext(null);
 
-const Hike = () => {
+const Hike = (props) => {
+    const key = props.config;
+    console.log(props.config);
+
     const [user, setUser] = useState(null);
 
     const loadCurrentUser = async () => {
-        console.log("Loading current user information");
+        // console.log("Loading current user information");
         const response = await fetch("/api/user", {
             headers: {
                 Accept: "application/json",
@@ -37,18 +41,23 @@ const Hike = () => {
     return (
         <Router>
             <UserContext.Provider value={user}>
-                <TopNav />
-                <Switch>
-                    <main className="mt-4 pt-5">
-                        <Route exact path="/" component={Home} />
-                        <Route path="/map" component={MapPage} />
-                        <Route path="/login" component={Login} />
-                        <Route path="/logout" component={Logout} />
-                        <Route path="/register" component={Register} />
-                        <Route path="/submit" component={EntitySubmit} />
-                        <Route path="/details/:id" component={EntityDetails} />
-                    </main>
-                </Switch>
+                <GoogleContext.Provider value={key}>
+                    <TopNav />
+                    <Switch>
+                        <main className="mt-3 pt-5">
+                            <Route exact path="/" component={Home} />
+                            <Route path="/map" component={MapPage} />
+                            <Route path="/login" component={Login} />
+                            <Route path="/logout" component={Logout} />
+                            <Route path="/register" component={Register} />
+                            <Route path="/submit" component={EntitySubmit} />
+                            <Route
+                                path="/details/:id"
+                                component={EntityDetails}
+                            />
+                        </main>
+                    </Switch>
+                </GoogleContext.Provider>
             </UserContext.Provider>
         </Router>
     );

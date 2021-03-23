@@ -1,12 +1,5 @@
 import React, { useContext } from "react";
-import {
-    Button,
-    Navbar,
-    Nav,
-    NavDropdown,
-    Form,
-    FormControl,
-} from "react-bootstrap";
+import { Button, Navbar, Nav, Form, FormControl } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { UserContext } from "../Hike";
 import Logout from "../pages/auth/Logout";
@@ -14,10 +7,7 @@ import Logout from "../pages/auth/Logout";
 function User(props) {
     const user = useContext(UserContext);
 
-    // console.log("user data in User component", user);
-
     if (user) {
-        console.log(user);
         return (
             <>
                 <Nav.Link disabled>Hello, {user && user.username}</Nav.Link>
@@ -43,9 +33,17 @@ function User(props) {
 }
 
 const TopNav = () => {
+    const user = useContext(UserContext);
+
     return (
         <Navbar collapseOnSelect bg="white" expand="lg" fixed="top">
-            <Navbar.Brand href="/">HikeCzech</Navbar.Brand>
+            <Navbar.Brand
+                href="/"
+                className="text-success
+			"
+            >
+                HikeCzech
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
             <Navbar.Collapse id="basic-navbar-nav">
@@ -53,13 +51,15 @@ const TopNav = () => {
                     <LinkContainer to={"/map"}>
                         <Nav.Link>Map</Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to={"/favs"}>
-                        <Nav.Link>Favourites</Nav.Link>
-                    </LinkContainer>
+
                     <LinkContainer to={"/submit"}>
                         <Nav.Link>Contribute</Nav.Link>
                     </LinkContainer>
-
+                    {user ? (
+                        <LinkContainer to={"/favs"}>
+                            <Nav.Link>Favourites</Nav.Link>
+                        </LinkContainer>
+                    ) : null}
                     <Form inline>
                         <FormControl
                             type="text"

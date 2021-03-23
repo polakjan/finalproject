@@ -10,15 +10,23 @@ import {
     Tabs,
     Table,
     Tab,
+    Form,
     // Sonnet,
 } from "react-bootstrap";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
+import Weather from "../../components/Weather";
+import Comment from "../../components/Comment";
+// import { UserContext } from "../../Hike";
+import Admin from "../../components/Admin";
+import Moment from "react-moment";
+import Mapper from "../../components/Mapper";
 
 const EntityDetails = () => {
+    // const user = useContext(UserContext);
     // state section
-    const [entity, setEntity] = useState({});
+    const [entity, setEntity] = useState(null);
     let { id } = useParams();
 
     // Fetch entity data
@@ -31,95 +39,96 @@ const EntityDetails = () => {
 
     useEffect(() => {
         fetchEntity();
+        console.log(entity);
     }, []);
 
-    useEffect(() => {
-        console.log(entity);
-    }, [entity]);
+    const content = !entity ? (
+        <div>
+            <h1>loading...</h1>
+        </div>
+    ) : (
+        <Container className="px-4">
+            <Row className="justify-content-center h-25 d-inline-block">
+                <Image className="w-100 h-auto" src={entity.photo} />
+            </Row>
+            <Row>
+                <Mapper entity={entity} />
+            </Row>
+            <Row className="justify-content-around mt-1">
+                <LinkContainer to={`/map/${id}`}>
+                    {/* LINK TO ENTITY MAP */}
+                    <Button variant="success">Map</Button>
+                </LinkContainer>
+                <Button variant="success">Download</Button>
+                <Button variant="success">Favourite</Button>
+                <Button variant="success">Gallery</Button>
+                <Admin entity={entity} type={"entity"} />
+            </Row>
+            <Card body className="text-center my-2">
+                <h2>{entity.name}</h2>
+            </Card>
+            <Tabs
+                defaultActiveKey="general"
+                id="uncontrolled-tab-example"
+                className="text-center my-2"
+            >
+                <Tab eventKey="general" title="General Info">
+                    {/* <Sonnet /> */}
+                    <div>?? what goes here ??</div>
+                </Tab>
 
-    return (
-        <>
-            {entity ? (
-                <Container className="my-5">
-                    <Row className="justify-content-center h-50">
-                        <Image className="w-100 " src={entity.photo} />
-                    </Row>
-                    <Row className="justify-content-around mt-1">
-                        <LinkContainer to={"/map"}>
-                            <Button variant="success">Map</Button>
-                        </LinkContainer>
-                        <Button variant="success">Download</Button>
-                        <Button variant="success">Favourite</Button>
-                        <Button variant="success">Gallery</Button>
-                    </Row>
-                    <Card body className="text-center my-2">
-                        <h2>{entity.name}</h2>
-                    </Card>
-                    <Tabs
-                        defaultActiveKey="general"
-                        id="uncontrolled-tab-example"
-                        className="text-center my-2"
-                    >
-                        <Tab eventKey="general" title="General Info">
-                            {/* <Sonnet /> */}
-                            <div>Region: {entity.region}</div>
-                        </Tab>
-                        <Tab eventKey="desc" title="Description">
-                            {/* <Sonnet /> */}
-                            <div>{entity.description}</div>
-                        </Tab>
-                        <Tab eventKey="elev" title="Elevation">
-                            {/* <Sonnet /> */}
-                            <div>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit. Sequi, excepturi?
-                            </div>
-                        </Tab>
-                    </Tabs>
-                    <Row>
+                <Tab eventKey="reviews" title="Reviews">
+                    {/* <Sonnet /> */}
+                    <Container>
                         <h1 className="mt-2">Reviews</h1>
+                        <Row>
+                            <Col>
+                                <h3>Username</h3>
+                            </Col>
+                            <Col>
+                                <h3>Review</h3>
+                            </Col>
+                        </Row>
+                        {entity.comments &&
+                            entity.comments.map((comment) => (
+                                <Row key={comment.id}>
+                                    <Col>{comment.user.username}</Col>
+                                    <Col>
+                                        {comment.comment}{" "}
+                                        <Moment fromNow ago>
+                                            {comment.updated_at}
+                                        </Moment>{" "}
+                                        ago
+                                    </Col>
+                                    <Admin comment={comment} type={"comment"} />
+                                </Row>
+                            ))}
+                    </Container>
 
-                        <Table striped bordered hover size="sm">
-                            <thead>
-                                <tr>
-                                    <th>⭐</th>
-                                    <th>Username</th>
-                                    <th>Comment</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Mark</td>
-                                    <td>
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Ab laudantium eligendi
-                                        temporibus tenetur omnis quae.
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Jacob</td>
-                                    <td>
-                                        Lorem ipsum, dolor sit amet consectetur
-                                        adipisicing elit. Qui tempore
-                                        aspernatur, voluptas tenetur eius in
-                                        incidunt optio eaque consequuntur!
-                                        Aliquid a minima dicta corrupti odit?
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Bob</td>
-                                    <td>pretty good</td>
-                                </tr>
-                            </tbody>
-                        </Table>
-                    </Row>
-                </Container>
-            ) : null}
-        </>
+                    <Comment id={id} />
+                </Tab>
+                <Tab eventKey="desc" title="Description">
+                    {/* <Sonnet /> */}
+                    <div>{entity.description}</div>
+                </Tab>
+                <Tab eventKey="elev" title="Elevation">
+                    {/* <Sonnet /> */}
+                    <div>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Sequi, excepturi?
+                    </div>
+                </Tab>
+                <Tab eventKey="weather" title="Weather Forecast">
+                    {/* <Sonnet /> */}
+                    <div>
+                        <Weather />
+                    </div>
+                </Tab>
+            </Tabs>
+        </Container>
     );
+
+    return <>{content}</>;
 };
 
 export default EntityDetails;

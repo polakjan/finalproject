@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext} from "react";
 import { Container, Jumbotron, Row, Col } from "react-bootstrap";
 import Car from "./Car";
 import Homecard from "./Homecard";
 import ScrollToTop from "react-scroll-up";
 import icon from "./up-arrow.png";
+import GoogleContext from "../../Hike";
 
-const Home = () => {
+
+const Home = (props) => {
+
+    const value = useContext(GoogleContext);
+    console.log(value);
+
     // state section
     const [entities, setEntities] = useState({});
 
@@ -21,9 +27,12 @@ const Home = () => {
         fetchEntities();
     }, []);
 
-    useEffect(() => {
-        console.log(entities);
-    }, [entities]);
+    // useEffect(() => {
+    //     console.log(entities);
+    // }, [entities]);
+
+    
+    
 
     return (
         <Container className="bg-light pb-2 my-2">
@@ -40,8 +49,8 @@ const Home = () => {
                     {" "}
                     {entities.length > 0
                         ? entities.map((i) => (
-                              <Col className="p-2">
-                                  <Homecard key={i.id} data={i} />{" "}
+                              <Col key={i.id} className="p-2">
+                                  <Homecard data={i} />{" "}
                               </Col>
                           ))
                         : null}

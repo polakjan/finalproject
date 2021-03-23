@@ -17,7 +17,9 @@
 
 <body>
     <div id="app"></div>
+    <script>const app_config = {!! json_encode(["REACT_APP_GOOGLE_API_KEY" => env("REACT_APP_GOOGLE_API_KEY")]) !!}</script>
     <script src="{{ mix('js/app.js') }}" defer></script>
+    
 </body>
 
 </html>
