@@ -58,7 +58,7 @@ const EntityDetails = () => {
                 <Button variant="success">Download</Button>
                 <Button variant="success">Favourite</Button>
                 <Button variant="success">Gallery</Button>
-                <Admin props={entity} />
+                <Admin entity={entity} type={"entity"} />
             </Row>
             <Card body className="text-center my-2">
                 <h2>{entity.name}</h2>
@@ -98,7 +98,10 @@ const EntityDetails = () => {
                                                     </Moment>{" "}
                                                     ago
                                                 </td>
-                                                <Admin props={comment} />
+                                                <Admin
+                                                    comment={comment}
+                                                    type={"comment"}
+                                                />
                                             </tr>
                                         </>
                                     ))}

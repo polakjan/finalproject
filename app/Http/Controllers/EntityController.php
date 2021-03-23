@@ -50,12 +50,10 @@ class EntityController extends Controller
             'message' => 'Review was successfully saved'
         ];
     }
- 
-	public function destroy($id) {
-			
-		$entity = Entity::find($id);
-		$entity->destroy();
 
-		return redirect('/');
-	}
+    public function destroy($id)
+    {
+
+        Entity::findOrFail($id)->delete();
+    }
 }

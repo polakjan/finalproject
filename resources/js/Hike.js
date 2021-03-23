@@ -48,10 +48,6 @@ const Hike = () => {
                         <Route path="/register" component={Register} />
                         <Route path="/submit" component={EntitySubmit} />
                         <Route path="/details/:id" component={EntityDetails} />
-                        <Route
-                            path="/entity/delete/:id"
-                            component={EntityDelete}
-                        />
                     </main>
                 </Switch>
             </UserContext.Provider>
