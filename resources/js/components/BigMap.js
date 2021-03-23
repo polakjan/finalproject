@@ -4,6 +4,8 @@
 // line 80 picks up that key very time app is built
 
 import React, { useState, useEffect, useContext } from "react";
+import { LinkContainer } from "react-router-bootstrap";
+import { Button, Card, ListGroup } from "react-bootstrap";
 
 import {
     GoogleMap,
@@ -14,48 +16,67 @@ import {
     InfoWindow,
 } from "react-google-maps";
 
-import {GoogleContext} from "../Hike";
+import { GoogleContext } from "../Hike";
 
 function BigMap(props) {
-
     const apiKeyContext = useContext(GoogleContext);
-    const apiKey = apiKeyContext['REACT_APP_GOOGLE_API_KEY'];
-
-    console.log(apiKey);
-
-
+    const apiKey = apiKeyContext["REACT_APP_GOOGLE_API_KEY"];
 
     let points = props.points;
 
-    function getPoints() {
-        return points;
-    }
-
+    // function getPoints() {
+    //     return points;
+    // }
 
     ////////// ////////// ////////// google code
-    
-    function Map() {
 
-        let pts = getPoints();
-        
+    function Map() {
+        const [selectedPoint, setSelectedPoint] = useState(null);
+
+        // let pts = getPoints();
+        console.log(points);
+
         return (
             <GoogleMap
-                defaultZoom={10}
+                defaultZoom={7}
                 defaultCenter={{ lat: 49.81, lng: 15.47 }}
             >
-
                 {
                     // console.log(pts)
-                    
-                    pts && pts.map((point, index) =>(
-                        <Marker key={index} position={point}/>
-                        
-                    ))
+
+                    points &&
+                        points.map((point, index) => (
+                            <Marker
+                                key={index}
+                                position={JSON.parse(point.coordinates)[0]}
+                                onClick={() => {
+                                    setSelectedPoint(point);
+                                    console.log(selectedPoint);
+                                }}
+                                icon={{
+                                    url:'/boots.svg',
+                                    scaledSize: new window.google.maps.Size(30,30)
+                                }}
+                            />
+                        ))
                 }
 
-                <InfoWindow position={{ lat: 49.81, lng: 15.47 }}>
-                    <div>CZ here</div>
-                </InfoWindow>
+                {selectedPoint && (
+                    <InfoWindow
+                        position={JSON.parse(selectedPoint.coordinates)[0]}
+                        onCloseClick={() => {
+                            setSelectedPoint(null);
+                        }}
+                    >
+                        <div>
+                            Name: {selectedPoint.name} <br />
+                            Description: {selectedPoint.description} <br />
+                            <LinkContainer to={"/details/" + selectedPoint.id}>
+                                <Button variant="success">Find out more</Button>
+                            </LinkContainer>
+                        </div>
+                    </InfoWindow>
+                )}
             </GoogleMap>
         );
     }
