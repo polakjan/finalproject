@@ -15,12 +15,12 @@ class CreateEntitiesTable extends Migration
     {
         Schema::create('entities', function (Blueprint $table) {
             $table->id();
-			$table->string('token')->nullable();
-			$table->string('name')->nullable();
-			$table->string('region')->nullable();
-			$table->string('photo')->nullable();
-			$table->text('description')->nullable();
-			$table->text('coordinates')->nullable();
+            // $table->string('token')->nullable();
+            $table->string('name')->nullable();
+            $table->string('region')->nullable();
+            $table->string('photo')->nullable();
+            $table->text('description')->nullable();
+            $table->text('coordinates')->nullable();
             $table->timestamps();
         });
     }

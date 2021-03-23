@@ -28,7 +28,7 @@ class CommentFactory extends Factory
             //
             'user_id' => User::factory(),
             'entity_id' => Entity::factory(),
-            'comment' => $this->faker->sentence,
+            'comment' => $this->faker->sentence(3),
             'created_at' => $this->faker->dateTimeThisDecade('+0 years')
         ];
     }
