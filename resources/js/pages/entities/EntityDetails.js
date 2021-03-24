@@ -65,9 +65,6 @@ const EntityDetails = () => {
             <Row>
                 <Mapper entity={entity} />
             </Row>
-            <Row>
-                <Mapper entity={entity} />
-            </Row>
             <Row className="justify-content-around mt-1">
                 <LinkContainer to={`/map/${id}`}>
                     {/* LINK TO ENTITY MAP */}

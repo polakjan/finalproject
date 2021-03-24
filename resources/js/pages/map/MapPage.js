@@ -15,12 +15,18 @@ const MapPage = () => {
         const response = await fetch(url);
 
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         setPoints(listPoints(data));
     }
 
-    function listPoints(data) {
-        return data.map((e) => JSON.parse(e.coordinates)[0]);
+    function listPoints (data) {
+
+        // return data.map(e => 
+        //     JSON.parse(e.coordinates)[0]
+        //     );
+        return data.map(e => e
+            );
+
     }
 
     useEffect(() => {
@@ -28,7 +34,7 @@ const MapPage = () => {
     }, []);
 
     useEffect(() => {
-        console.log(points);
+        // console.log(points);
     }, [points]);
 
     return (
