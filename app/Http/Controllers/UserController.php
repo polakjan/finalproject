@@ -38,6 +38,7 @@ class UserController extends Controller
         return Auth::user();
     }
 
+	
 		public function myFavorites()
 	{
 		// find all favorites

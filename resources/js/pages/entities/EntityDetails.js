@@ -46,14 +46,14 @@ const EntityDetails = () => {
         fetchEntity();
     }, []);
 
-    async function handleFavorite() {
-        // let id = user;
-        console.log(user);
-        const url = `/api/my_favorites`;
-        const response = await fetch(url);
-        const data = await response.json();
-        console.log(data);
-        // favorite === 1 ? setFavorite(0) : setFavorite(1);
+    function handleFavorite() {
+        // // let id = user;
+        // console.log(user);
+        // const url = `/api/my_favorites`;
+        // const response = await fetch(url);
+        // const data = await response.json();
+        // console.log(data);
+        favorite === 1 ? setFavorite(0) : setFavorite(1);
     }
 
     const content = !entity ? (
