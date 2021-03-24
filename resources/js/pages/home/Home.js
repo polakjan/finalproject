@@ -64,7 +64,11 @@ const Home = (props) => {
                 }}
             >
                 <span>
-                    <ArrowUpCircle class="text-dark" width="32" height="32" />
+                    <ArrowUpCircle
+                        className="text-dark"
+                        width="32"
+                        height="32"
+                    />
                 </span>
             </ScrollToTop>
         </Container>

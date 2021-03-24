@@ -21,6 +21,8 @@ import {
     Marker,
     InfoWindow,
 } from "react-google-maps";
+import start from "../../img/start.svg";
+import beer from "../../img/beer.svg";
 
 import { GoogleContext } from "../Hike";
 
@@ -72,7 +74,7 @@ function Mapper(props) {
                 <Marker
                     position={getStart()}
                     icon={{
-                        url: "/start.svg",
+                        url: start,
                         scaledSize: new window.google.maps.Size(30, 30),
                     }}
                 />
@@ -82,7 +84,7 @@ function Mapper(props) {
                 <Marker
                     position={getEnd()}
                     icon={{
-                        url: "/beer.svg",
+                        url: beer,
                         scaledSize: new window.google.maps.Size(30, 30),
                     }}
                 />

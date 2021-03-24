@@ -15,6 +15,7 @@ import {
     Marker,
     InfoWindow,
 } from "react-google-maps";
+import boots from "../../img/boots.svg";
 
 import { GoogleContext } from "../Hike";
 
@@ -49,7 +50,7 @@ function BigMap(props) {
                                 setSelectedPoint(point);
                             }}
                             icon={{
-                                url: "/boots.svg",
+                                url: boots,
                                 scaledSize: new window.google.maps.Size(30, 30),
                             }}
                         />
