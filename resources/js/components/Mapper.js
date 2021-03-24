@@ -70,7 +70,7 @@
         <GoogleMap defaultZoom={11} defaultCenter={getZero()}>
           <Polyline
             path={polycoords}
-            strokeColor="#bc42f5"
+            strokeColor="#ae28ed"
             strokeOpacity={0.8}
             strokeWeight={2}
           />
