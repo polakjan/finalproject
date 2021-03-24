@@ -9,7 +9,6 @@ import GoogleContext from "../../Hike";
 
 const Home = (props) => {
     const value = useContext(GoogleContext);
-    console.log(value);
 
     // state section
     const [entities, setEntities] = useState({});

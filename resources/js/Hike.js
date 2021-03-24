@@ -20,7 +20,6 @@ export const GoogleContext = createContext(null);
 
 const Hike = (props) => {
     const key = props.config;
-    console.log(props.config);
 
     const [user, setUser] = useState(null);
 

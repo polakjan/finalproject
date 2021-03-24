@@ -39,7 +39,6 @@ const EntityDetails = () => {
         const response = await fetch(url);
         const data = await response.json();
         setEntity(data);
-        console.log(data);
     }
 
     useEffect(() => {
@@ -62,9 +61,6 @@ const EntityDetails = () => {
         </div>
     ) : (
         <Container className="px-4">
-            <Row>
-                <Mapper entity={entity} />
-            </Row>
             <Row>
                 <Mapper entity={entity} />
             </Row>
