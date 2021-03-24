@@ -21,7 +21,7 @@ import {
     Marker,
     InfoWindow,
 } from "react-google-maps";
-
+import { GeoAlt } from "react-bootstrap-icons";
 import { GoogleContext } from "../Hike";
 
 function Mapper(props) {
@@ -68,24 +68,24 @@ function Mapper(props) {
             <GoogleMap defaultZoom={11} defaultCenter={getZero()}>
                 <Polyline
                     path={polycoords}
-                    color="#ae28ed"
                     strokeOpacity={0.8}
                     strokeWeight={2}
                 />
                 <Marker
                     position={getStart()}
                     icon={{
-                        url: "/start.svg",
+                        url: "/startGeo.svg",
                         scaledSize: new window.google.maps.Size(30, 30),
                     }}
                 />
+
                 <InfoWindow position={getZero()}>
                     <div>zero here</div>
                 </InfoWindow>
                 <Marker
                     position={getEnd()}
                     icon={{
-                        url: "/beer.svg",
+                        url: "/endGeo.svg",
                         scaledSize: new window.google.maps.Size(30, 30),
                     }}
                 />

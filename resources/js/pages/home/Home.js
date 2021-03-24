@@ -6,10 +6,11 @@ import ScrollToTop from "react-scroll-up";
 import { ArrowUpCircle } from "react-bootstrap-icons";
 
 import GoogleContext from "../../Hike";
+import SearchContext from "../../Hike";
 
 const Home = (props) => {
     const value = useContext(GoogleContext);
-    console.log(value);
+    const search = useContext(SearchContext);
 
     // state section
     const [entities, setEntities] = useState({});
@@ -26,21 +27,11 @@ const Home = (props) => {
         fetchEntities();
     }, []);
 
-    // useEffect(() => {
-    //     console.log(entities);
-    // }, [entities]);
-
     return (
         <Container className="bg-light pb-2 my-2">
-            {/* <Jumbotron fluid className="bg-light">
-                <Container>
-                    <h1 className="text-primary mt-5 ">
-                        Find your next adventure!
-                    </h1>
-                </Container>
-            </Jumbotron> */}
             <Car />
             <Container>
+                {search && <div>Search context loaded</div>}
                 <Row xs={1} md={2}>
                     {" "}
                     {entities.length > 0
