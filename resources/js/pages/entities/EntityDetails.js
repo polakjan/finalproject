@@ -11,22 +11,26 @@ import {
     Table,
     Tab,
     Form,
+    Carousel,
     // Sonnet,
 } from "react-bootstrap";
+import { Heart, HeartFill } from "react-bootstrap-icons";
+
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import Weather from "../../components/Weather";
 import Comment from "../../components/Comment";
-// import { UserContext } from "../../Hike";
+import { UserContext } from "../../Hike";
 import Admin from "../../components/Admin";
 import Moment from "react-moment";
 import Mapper from "../../components/Mapper";
 
 const EntityDetails = () => {
-    // const user = useContext(UserContext);
+    const user = useContext(UserContext);
     // state section
     const [entity, setEntity] = useState(null);
+    const [favorite, setFavorite] = useState(0);
     let { id } = useParams();
 
     // Fetch entity data
@@ -35,12 +39,22 @@ const EntityDetails = () => {
         const response = await fetch(url);
         const data = await response.json();
         setEntity(data);
+        console.log(data);
     }
 
     useEffect(() => {
         fetchEntity();
-        console.log(entity);
     }, []);
+
+    function handleFavorite() {
+        // // let id = user;
+        // console.log(user);
+        // const url = `/api/my_favorites`;
+        // const response = await fetch(url);
+        // const data = await response.json();
+        // console.log(data);
+        favorite === 1 ? setFavorite(0) : setFavorite(1);
+    }
 
     const content = !entity ? (
         <div>
@@ -48,17 +62,20 @@ const EntityDetails = () => {
         </div>
     ) : (
         <Container className="px-4">
-            <Row className="justify-content-center h-25 d-inline-block">
-                <Image className="w-100 h-auto" src={entity.photo} />
+            <Row>
+                <Mapper entity={entity} />
             </Row>
-            <Row><Mapper entity={entity}/></Row>
             <Row className="justify-content-around mt-1">
                 <LinkContainer to={`/map/${id}`}>
                     {/* LINK TO ENTITY MAP */}
                     <Button variant="success">Map</Button>
                 </LinkContainer>
                 <Button variant="success">Download</Button>
-                <Button variant="success">Favourite</Button>
+
+                <Button variant="outline-danger" onClick={handleFavorite}>
+                    {favorite === 1 ? <HeartFill /> : <Heart />}
+                </Button>
+
                 <Button variant="success">Gallery</Button>
                 <Admin entity={entity} type={"entity"} />
             </Row>
@@ -73,6 +90,18 @@ const EntityDetails = () => {
                 <Tab eventKey="general" title="General Info">
                     {/* <Sonnet /> */}
                     <div>?? what goes here ??</div>
+                </Tab>
+                <Tab eventKey="gallery" title="Gallery">
+                    <Container>
+                        <Row xs={2} md={4}>
+                            <Image src={entity.photo} thumbnail />
+                            <Image src={entity.photo} thumbnail />
+                            <Image src={entity.photo} thumbnail />
+                            <Image src={entity.photo} thumbnail />
+                            <Image src={entity.photo} thumbnail />
+                            <Image src={entity.photo} thumbnail />
+                        </Row>
+                    </Container>
                 </Tab>
                 <Tab eventKey="reviews" title="Reviews">
                     {/* <Sonnet /> */}
@@ -120,6 +149,8 @@ const EntityDetails = () => {
                     <div>
                         <Weather />
                     </div>
+
+                    <Button variant="success">Gallery</Button>
                 </Tab>
             </Tabs>
         </Container>

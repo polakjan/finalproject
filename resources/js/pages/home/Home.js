@@ -1,14 +1,13 @@
-import React, { useState, useEffect, useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Container, Jumbotron, Row, Col } from "react-bootstrap";
 import Car from "./Car";
 import Homecard from "./Homecard";
 import ScrollToTop from "react-scroll-up";
-import icon from "./up-arrow.png";
+import { ArrowUpCircle } from "react-bootstrap-icons";
+
 import GoogleContext from "../../Hike";
 
-
 const Home = (props) => {
-
     const value = useContext(GoogleContext);
     console.log(value);
 
@@ -30,9 +29,6 @@ const Home = (props) => {
     // useEffect(() => {
     //     console.log(entities);
     // }, [entities]);
-
-    
-    
 
     return (
         <Container className="bg-light pb-2 my-2">
@@ -69,10 +65,9 @@ const Home = (props) => {
                 }}
             >
                 <span>
-                    <img src={icon} alt="icon" />
+                    <ArrowUpCircle class="text-dark" width="32" height="32" />
                 </span>
             </ScrollToTop>
-            {/*   Icon made by: https://www.flaticon.com/authors/dmitri13 */}
         </Container>
     );
 };

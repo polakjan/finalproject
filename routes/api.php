@@ -31,3 +31,8 @@ Route::post('/entity/{id}/destroy',  "EntityController@destroy")->middleware('ca
 Route::post('/comment/store', "CommentController@store");
 Route::post('/comment/{id}/destroy',  "CommentController@destroy")->middleware('can:admin');
 
+Route::post('/favorite/{id}', "FavoriteController@favoritePost");
+// Route::post('/unfavorite/{id}', 'FavoriteController@unFavoritePost');
+// Route::get('/favorite/fetch', "FavoriteController@fetch");
+Route::get('my_favorites', 'UserController@myFavorites')->middleware('auth');
+

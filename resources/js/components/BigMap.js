@@ -14,16 +14,13 @@ import {
     InfoWindow,
 } from "react-google-maps";
 
-import {GoogleContext} from "../Hike";
+import { GoogleContext } from "../Hike";
 
 function BigMap(props) {
-
     const apiKeyContext = useContext(GoogleContext);
-    const apiKey = apiKeyContext['REACT_APP_GOOGLE_API_KEY'];
+    const apiKey = apiKeyContext["REACT_APP_GOOGLE_API_KEY"];
 
     console.log(apiKey);
-
-
 
     let points = props.points;
 
@@ -31,31 +28,28 @@ function BigMap(props) {
         return points;
     }
 
-
     ////////// ////////// ////////// google code
-    
-    function Map() {
 
+    function Map() {
         let pts = getPoints();
-        
+
         return (
             <GoogleMap
-                defaultZoom={10}
+                defaultZoom={6}
                 defaultCenter={{ lat: 49.81, lng: 15.47 }}
             >
-
                 {
                     // console.log(pts)
-                    
-                    pts && pts.map((point, index) =>(
-                        <Marker key={index} position={point}/>
-                        
-                    ))
+
+                    pts &&
+                        pts.map((point, index) => (
+                            <Marker key={index} position={point} />
+                        ))
                 }
 
-                <InfoWindow position={{ lat: 49.81, lng: 15.47 }}>
+                {/* <InfoWindow position={{ lat: 49.81, lng: 15.47 }}>
                     <div>CZ here</div>
-                </InfoWindow>
+                </InfoWindow> */}
             </GoogleMap>
         );
     }
@@ -64,7 +58,7 @@ function BigMap(props) {
 
     return (
         <>
-            <div className="Mapper" style={{ width: "100vw", height: "20rem" }}>
+            <div className="Mapper" style={{ width: "100%", height: "60vh" }}>
                 <WrappedMap
                     googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${apiKey}`}
                     loadingElement={<div style={{ height: `100%` }} />}

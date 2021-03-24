@@ -22,8 +22,13 @@ class Entity extends Model
         return $this->hasMany(Comment::class);
     }
 
+	public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
     public function users()
     {
-        return $this->hasManyThrough(User::class, Comment::class, 'user_id');
+        return $this->hasManyThrough(User::class, Comment::class, Favorite::class, 'user_id');
     }
 }

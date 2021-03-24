@@ -57,7 +57,7 @@ const TopNav = () => {
                     </LinkContainer>
                     {user ? (
                         <LinkContainer to={"/favs"}>
-                            <Nav.Link>Favourites</Nav.Link>
+                            <Nav.Link>Favorites</Nav.Link>
                         </LinkContainer>
                     ) : null}
                     <Form inline>
