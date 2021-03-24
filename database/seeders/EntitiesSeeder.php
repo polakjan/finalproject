@@ -103,14 +103,6 @@ class EntitiesSeeder extends Seeder
         ]);
 
         Entity::create([
-            'name' => 'name',
-            'region' => 'region',
-            'photo' => 'photo',
-            'description' => 'description',
-            'coordinates' => 'coords'
-        ]);
-
-        Entity::create([
             'name' => 'east',
             'region' => 'east',
             'photo' => 'https://picsum.photos/id/10/2500/1667',
