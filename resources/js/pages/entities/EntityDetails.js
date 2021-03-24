@@ -65,6 +65,9 @@ const EntityDetails = () => {
             <Row>
                 <Mapper entity={entity} />
             </Row>
+            <Row>
+                <Mapper entity={entity} />
+            </Row>
             <Row className="justify-content-around mt-1">
                 <LinkContainer to={`/map/${id}`}>
                     {/* LINK TO ENTITY MAP */}
@@ -111,7 +114,7 @@ const EntityDetails = () => {
                             <Col>
                                 <h3>Username</h3>
                             </Col>
-                            <Col>
+                            <Col sm={8}>
                                 <h3>Review</h3>
                             </Col>
                         </Row>
@@ -119,10 +122,10 @@ const EntityDetails = () => {
                             entity.comments.map((comment) => (
                                 <Row key={comment.id}>
                                     <Col>{comment.user.username}</Col>
-                                    <Col>
+                                    <Col sm={8}>
                                         {comment.comment}{" "}
                                         <Moment fromNow ago>
-                                            {comment.updated_at}
+                                            {comment.created_at}
                                         </Moment>{" "}
                                         ago
                                     </Col>
