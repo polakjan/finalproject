@@ -30,8 +30,8 @@ class CommentFactory extends Factory
             //
             'user_id' => User::factory(),
             'entity_id' => $this->faker->numberBetween(1, $entity_count),
-            'comment' => $this->faker->sentence(2),
-            'created_at' => $this->faker->dateTimeThisDecade('+0 years')
+            'comment' => $this->faker->sentence(),
+            'created_at' => $this->faker->dateTimeThisDecade('+0 year')/* ->format('Y-m-d H:i:s') */
         ];
     }
 }

@@ -19,28 +19,28 @@ class AdminSeeder extends Seeder
             'username' => 'martin',
             'role' => 'admin',
             'email' => 'martin@martin.com',
-            'password' => 'martin'
+            'password' => 'martin',
         ]);
 
         User::create([
             'username' => 'michael',
             'role' => 'admin',
             'email' => 'michael@michael.com',
-            'password' => 'michael'
+            'password' => 'michael',
         ]);
 
         User::create([
-            'username' => 'sam',
+            'username' => 'samuel',
             'role' => 'admin',
-            'email' => 'sam@sam.com',
-            'password' => 'sam'
+            'email' => 'samuel@samuel.com',
+            'password' => 'samuel',
         ]);
 
         User::create([
             'username' => 'andrew',
             'role' => 'admin',
             'email' => 'andrew@andrew.com',
-            'password' => 'andrew'
+            'password' => 'andrew',
         ]);
     }
 }
