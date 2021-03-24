@@ -54,8 +54,11 @@ function BigMap(props) {
                                     console.log(selectedPoint);
                                 }}
                                 icon={{
-                                    url:'/boots.svg',
-                                    scaledSize: new window.google.maps.Size(30,30)
+                                    url: "/boots.svg",
+                                    scaledSize: new window.google.maps.Size(
+                                        30,
+                                        30
+                                    ),
                                 }}
                             />
                         ))
