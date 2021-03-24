@@ -10,7 +10,18 @@ const Homecard = (props) => {
             <Card.Body className="d-flex flex-column justify-content-around">
                 <Card.Title className="">{name}</Card.Title>
 
-                <Card.Img variant="top" src={photo && photo} />
+                <Card.Img
+                    fluid
+                    variant="top"
+                    className="mw-100"
+                    style={{
+                        // width: "100%",
+                        // // maxHeight: "100%",
+                        objectFit: "cover",
+                        overflow: "hidden",
+                    }}
+                    src={photo && photo}
+                />
 
                 <Card.Text className="p-1">{description}</Card.Text>
                 <ListGroup variant="flush">

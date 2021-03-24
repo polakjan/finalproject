@@ -31,6 +31,7 @@ const EntityDetails = () => {
     // state section
     const [entity, setEntity] = useState(null);
     const [favorite, setFavorite] = useState(0);
+    const [dir, setDir] = useState(null);
     let { id } = useParams();
 
     // Fetch entity data
@@ -40,12 +41,15 @@ const EntityDetails = () => {
         const data = await response.json();
         setEntity(data);
         console.log(data);
+        let coords = JSON.parse(data.coordinates)[0];
+
+        setDir(coords);
     }
 
     useEffect(() => {
         fetchEntity();
     }, []);
-
+    console.log(dir);
     function handleFavorite() {
         // // let id = user;
         // console.log(user);
@@ -66,17 +70,21 @@ const EntityDetails = () => {
                 <Mapper entity={entity} />
             </Row>
             <Row className="justify-content-around mt-1">
-                <LinkContainer to={`/map/${id}`}>
-                    {/* LINK TO ENTITY MAP */}
-                    <Button variant="success">Map</Button>
-                </LinkContainer>
+                {dir && (
+                    <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href={`https://www.google.com/maps/dir/Current+Location/${dir.lat},${dir.lng}`}
+                    >
+                        <Button variant="success">Directions</Button>
+                    </a>
+                )}
                 <Button variant="success">Download</Button>
 
                 <Button variant="outline-danger" onClick={handleFavorite}>
                     {favorite === 1 ? <HeartFill /> : <Heart />}
                 </Button>
 
-                <Button variant="success">Gallery</Button>
                 <Admin entity={entity} type={"entity"} />
             </Row>
             <Card body className="text-center my-2">
@@ -111,7 +119,7 @@ const EntityDetails = () => {
                             <Col>
                                 <h3>Username</h3>
                             </Col>
-                            <Col>
+                            <Col sm={8}>
                                 <h3>Review</h3>
                             </Col>
                         </Row>
@@ -119,10 +127,10 @@ const EntityDetails = () => {
                             entity.comments.map((comment) => (
                                 <Row key={comment.id}>
                                     <Col>{comment.user.username}</Col>
-                                    <Col>
+                                    <Col sm={8}>
                                         {comment.comment}{" "}
                                         <Moment fromNow ago>
-                                            {comment.updated_at}
+                                            {comment.created_at}
                                         </Moment>{" "}
                                         ago
                                     </Col>

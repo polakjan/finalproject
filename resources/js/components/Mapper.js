@@ -21,25 +21,16 @@ import {
     Marker,
     InfoWindow,
 } from "react-google-maps";
-
+import { GeoAlt } from "react-bootstrap-icons";
 import { GoogleContext } from "../Hike";
 
 function Mapper(props) {
     let polycoords = JSON.parse(props.entity.coordinates);
-    console.log(polycoords);
 
     const apiKeyContext = useContext(GoogleContext);
     const apiKey = apiKeyContext["REACT_APP_GOOGLE_API_KEY"];
 
-    console.log(apiKey);
-
-    // return (
-    //     <p>XXXXXX</p>
-    // )
-
     ////////// ////////// ////////// deterine start, end, zero
-
-    polycoords.pop(); /// BUT WHY????
 
     function getStart() {
         let start = polycoords[0];
@@ -48,35 +39,56 @@ function Mapper(props) {
     }
     function getEnd() {
         const length = polycoords.length;
-        let end = polycoords[length - 1]; ////// WHY is the last one different?
+        let end = polycoords[length - 1];
         console.log(end);
         return end;
     }
     function getZero() {
-        let zero = { lat: 0, lng: 0 };
-        const length = polycoords.length;
+        let wipLat = [];
+        let wipLng = [];
+
         for (let i = 0; i < polycoords.length; i++) {
-            zero["lat"] += polycoords[i]["lat"] / length;
-            zero["lng"] += polycoords[i]["lng"] / length;
+            wipLat.push(polycoords[i]["lat"]);
+            wipLng.push(polycoords[i]["lng"]);
         }
-        console.log(zero);
+
+        console.log(wipLat);
+        console.log(wipLng);
+
+        let zero = {
+            lat: (Math.min(...wipLat) + Math.max(...wipLat)) / 2,
+            lng: (Math.min(...wipLng) + Math.max(...wipLng)) / 2,
+        };
+
         return zero;
     }
     ////////// ////////// ////////// google code
     function Map() {
         return (
-            <GoogleMap defaultZoom={9} defaultCenter={getZero()}>
+            <GoogleMap defaultZoom={11} defaultCenter={getZero()}>
                 <Polyline
                     path={polycoords}
-                    strokeColor="#0000FF"
                     strokeOpacity={0.8}
                     strokeWeight={2}
                 />
-                <Marker position={getStart()}></Marker>
-                {/* <InfoWindow position={getEnd()}>
+                <Marker
+                    position={getStart()}
+                    icon={{
+                        url: "/startGeo.svg",
+                        scaledSize: new window.google.maps.Size(30, 30),
+                    }}
+                />
+
+                <InfoWindow position={getZero()}>
                     <div>zero here</div>
-                </InfoWindow> */}
-                <Marker position={getEnd()} />
+                </InfoWindow>
+                <Marker
+                    position={getEnd()}
+                    icon={{
+                        url: "/endGeo.svg",
+                        scaledSize: new window.google.maps.Size(30, 30),
+                    }}
+                />
             </GoogleMap>
         );
     }
