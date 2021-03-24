@@ -15,7 +15,7 @@ import {
     Marker,
     InfoWindow,
 } from "react-google-maps";
-import boots from "../../img/boots.svg";
+import boots from "./img/boots.svg";
 
 import { GoogleContext } from "../Hike";
 

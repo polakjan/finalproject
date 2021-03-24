@@ -21,8 +21,8 @@ import {
     Marker,
     InfoWindow,
 } from "react-google-maps";
-import start from "../../img/start.svg";
-import beer from "../../img/beer.svg";
+import start from "./img/start.svg";
+import beer from "./img/beer.svg";
 
 import { GoogleContext } from "../Hike";
 
