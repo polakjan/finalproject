@@ -3,21 +3,15 @@ import {
     Row,
     Image,
     Col,
-    ButtonGroup,
     Button,
-    ButtonToolbar,
     Card,
     Tabs,
-    Table,
     Tab,
-    Form,
-    Carousel,
-    // Sonnet,
 } from "react-bootstrap";
 import { Heart, HeartFill } from "react-bootstrap-icons";
 
 import React, { useState, useEffect, useContext } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import Weather from "../../components/Weather";
 import Comment from "../../components/Comment";
@@ -87,7 +81,6 @@ const EntityDetails = () => {
                 className="text-center my-2"
             >
                 <Tab eventKey="general" title="General Info">
-                    {/* <Sonnet /> */}
                     <div>?? what goes here ??</div>
                 </Tab>
                 <Tab eventKey="gallery" title="Gallery">
@@ -103,7 +96,6 @@ const EntityDetails = () => {
                     </Container>
                 </Tab>
                 <Tab eventKey="reviews" title="Reviews">
-                    {/* <Sonnet /> */}
                     <Container>
                         <h1 className="mt-2">Reviews</h1>
                         <Row>
@@ -133,18 +125,15 @@ const EntityDetails = () => {
                     <Comment id={id} />
                 </Tab>
                 <Tab eventKey="desc" title="Description">
-                    {/* <Sonnet /> */}
                     <div>{entity.description}</div>
                 </Tab>
                 <Tab eventKey="elev" title="Elevation">
-                    {/* <Sonnet /> */}
                     <div>
                         Lorem ipsum dolor sit amet, consectetur adipisicing
                         elit. Sequi, excepturi?
                     </div>
                 </Tab>
                 <Tab eventKey="weather" title="Weather Forecast">
-                    {/* <Sonnet /> */}
                     <div>
                         <Weather />
                     </div>

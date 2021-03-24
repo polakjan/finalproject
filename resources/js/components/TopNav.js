@@ -4,7 +4,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { UserContext } from "../Hike";
 import Logout from "../pages/auth/Logout";
 
-function User(props) {
+function User() {
     const user = useContext(UserContext);
 
     if (user) {

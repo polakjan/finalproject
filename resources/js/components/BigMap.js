@@ -5,13 +5,13 @@
 
 import React, { useState, useEffect, useContext } from "react";
 import { LinkContainer } from "react-router-bootstrap";
-import { Button, Card, ListGroup } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 import {
     GoogleMap,
     withScriptjs,
     withGoogleMap,
-    Polyline,
+    // Polyline,
     Marker,
     InfoWindow,
 } from "react-google-maps";
