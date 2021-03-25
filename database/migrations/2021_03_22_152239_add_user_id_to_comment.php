@@ -15,10 +15,17 @@ class AddUserIdToComment extends Migration
     {
         Schema::table('comments', function (Blueprint $table) {
             //
-            $table->foreignId('user_id')->after('id');
-            $table->foreignId('entity_id')->after('user_id');
+            if (!Schema::hasColumn('comments', 'user_id')) {
+                $table->foreignId('user_id')->after('id');
+            }
 
-            $table->unique(['entity_id', 'user_id'], 'user_comment_unique_index');
+            if (!Schema::hasColumn('comments', 'entity_id')) {
+                $table->foreignId('entity_id')->after('user_id');
+            }
+
+            if (!collect(DB::select("SHOW INDEXES FROM comments"))->pluck('Key_name')->contains('user_comment_unique_index')) {
+                $table->unique(['entity_id', 'user_id'], 'user_comment_unique_index');
+            }
         });
     }
 
@@ -31,9 +38,17 @@ class AddUserIdToComment extends Migration
     {
         Schema::table('comments', function (Blueprint $table) {
             //
-            $table->dropIndex('user_comment_unique_index');
-            $table->dropColumn('entity_id');
-            $table->dropColumn('user_id');
+            if (collect(DB::select("SHOW INDEXES FROM comments"))->pluck('Key_name')->contains('user_comment_unique_index')) {
+                $table->dropIndex('user_comment_unique_index');
+            }
+
+            if (Schema::hasColumn('comments', 'entity_id')) {
+                $table->dropColumn('entity_id');
+            }
+
+            if (Schema::hasColumn('comments', 'user_id')) {
+                $table->dropColumn('user_id');
+            }
         });
     }
 }
