@@ -22,3 +22,5 @@
 
     ; folder to purge after deploy
     purge[] = "bootstrap/cache/"
+
+    post-deploy[] = "php artisan assets:upload"
