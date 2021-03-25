@@ -7,8 +7,8 @@
     path = "/web"
 
     ; credentials:
-    user = "cbp_hikeczech"
-    pass = "c2YbhdJ5Fc#U"
+    user = ""
+    pass = ""
 
     ; branch to deploy:
     branch = "master"
